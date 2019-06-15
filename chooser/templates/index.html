@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Film chooser</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body class="bg-dark">
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h2 class="text-uppercase text-primary font-weight-bold">"Film chooser"</Colorboard></h2>
+        <p class="lead font-italic text-light">Fill in form.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-center align-items-center mb-3">
+                <span class="text-light">Last watching</span>
+            </h4>
+            <ul class="list-group mb-3">
+                {% if last_watching %}
+                {% for film in last_watching %}
+                <li class="list-group-item d-flex justify-content-center lh-condensed">
+                       <h6 class="my-0"> {{ film.films }} </h6>
+                </li>
+                 {% endfor %}
+            {% endif %}
+
+
+            </ul>
+        </div>
+
+        <div class="col-md-8 order-md-1 mt-3">
+
+            <form class="needs-validation" action="{% url 'chooser' %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="text-light" for="username">How many films will you watch ?</label>
+                    <div class="input-group rounded">
+                        {{ form.films }}
+                        <div class="invalid-feedback" style="width: 100%;">
+                            Films is required.
+                        </div>
+                    </div>
+                </div>
+
+
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Show the result</button>
+            </form>
+
+            {% if chooser %}
+                 {% for film in chooser %}
+                    <div class="col-md-4  text-muted alert alert-success border border-primary mt-4" role="alert">
+                        {{ film.films }}
+                    </div>
+                 {% endfor %}
+            {% endif %}
+
+        </div>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2019 Nickolay Osiniy</p>
+    </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+[
+  {
+    "model": "chooser.FilmsBase",
+    "pk": 1,
+    "fields": {
+      "films": "Правило боя"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 2,
+    "fields": {
+      "films": "Призраки Элоиз"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 3,
+    "fields": {
+      "films": "Битва преподов"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 4,
+    "fields": {
+      "films": "Могучие рейнджеры"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 5,
+    "fields": {
+      "films": "Месть Салазара"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 6,
+    "fields": {
+      "films": "Чудо-женщина"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 7,
+    "fields": {
+      "films": "Тачки 3"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 8,
+    "fields": {
+      "films": "Последний рыцарь"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 9,
+    "fields": {
+      "films": "Гадкий я"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 10,
+    "fields": {
+      "films": "Подводная эра"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 11,
+    "fields": {
+      "films": "Время бешеных псов"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 12,
+    "fields": {
+      "films": "Возвращение домой"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 13,
+    "fields": {
+      "films": "Война за планету обезьян"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 14,
+    "fields": {
+      "films": "Дюнкерк"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 15,
+    "fields": {
+      "films": "Атомная блондинка"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 16,
+    "fields": {
+      "films": "Пробуждение"
+    }
+  },
+    {
+    "model": "chooser.FilmsBase",
+    "pk": 17,
+    "fields": {
+      "films": "Стань легендой!"
+    }
+  }
+]
