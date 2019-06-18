@@ -1,13 +1,12 @@
-import random
 import csv
 import io
+import random
 
 from django.contrib import messages
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+
 from .forms import FilmsForm
 from .models import FilmsBase, FilmsToWatching
-
 
 template_name = 'index.html'
 

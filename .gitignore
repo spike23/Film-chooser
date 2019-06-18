@@ -107,4 +107,4 @@ venv.bak/
 .idea/
 
 # files
-.csv
+*.csv
