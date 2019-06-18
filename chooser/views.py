@@ -1,5 +1,9 @@
 import random
+import csv
+import io
 
+from django.contrib import messages
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .forms import FilmsForm
 from .models import FilmsBase, FilmsToWatching
@@ -50,3 +54,24 @@ def random_films(films, quantity):
     choice = random.sample(list(films), quantity)
     result_list = [film.get('films') for film in choice]
     return result_list
+
+
+def base_films_uploader(request):
+
+    csv_file = request.FILES['file']
+    if not csv_file.name.endswith('.csv'):
+        messages.error(request, 'This file is not a .csv file')
+    data = csv_file.read().decode('utf-8')
+    io_string = io.StringIO(data)
+    # count = 0
+    for film in csv.reader(io_string):
+        _, created = FilmsBase.objects.update_or_create(
+            films=film[0]
+        )
+    #     count += 1
+    #
+    # context = {
+    #     'counter': count
+    # }
+    # return render(request, template_name, context)
+    return redirect('chooser')

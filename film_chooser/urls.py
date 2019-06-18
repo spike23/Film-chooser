@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('chooser', views.chooser, name='chooser'),
+    path('upload-csv/', views.base_films_uploader, name='base_films_uploader'),
+
 ]
