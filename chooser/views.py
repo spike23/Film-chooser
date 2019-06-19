@@ -46,7 +46,7 @@ def chooser(request):
 
             return render(request, template_name, context)
     return redirect('index')
-    # TODO Validation of films number, removing or not film from base
+
 
 
 def random_films(films, quantity):

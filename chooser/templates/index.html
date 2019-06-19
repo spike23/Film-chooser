@@ -92,6 +92,19 @@
 
         <footer class="my-5 pt-5 text-light text-center text-small">
             <p class="mb-1">&copy; 2019 Nickolay Osiniy</p>
+             <div class="btn btn-primary btn-sm float-bottom">
+                    {% if user.is_authenticated %}
+                <p class="mb-1">{{ user.username }}</p>
+        <p><a class="text-light" href="{% url 'logout' %}">Log out</a></p>
+        {% else %}
+                              <div class="btn btn-primary btn-sm float-bottom">
+        <p><a  class="text-light" href="{% url 'signup' %}">Sign Up</a></p>
+                              </div>
+                              <div class="btn btn-primary btn-sm float-bottom">
+        <p><a  class="text-light" href="{% url 'login' %}">Log In </a></p>
+        {% endif %}
+                              </div>
+             </div>>
         </footer>
     </div>
 </div>
