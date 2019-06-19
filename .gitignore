@@ -108,3 +108,8 @@ venv.bak/
 
 # files
 *.csv
+!test.csv
+
+# mail folder
+sent_emails/*
+!sent_emails/.gitkeep
