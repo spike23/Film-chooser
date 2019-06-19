@@ -104,8 +104,11 @@
                 <div class="btn btn-primary btn-sm float-bottom">
                     <p><a class="text-light" href="{% url 'login' %}">Log In </a></p>
                 </div>
-                 <div class="btn btn-primary btn-sm float-bottom">
+                <div class="btn btn-primary btn-sm float-bottom">
                     <p><a class="text-light" href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
+                </div>
+                <div class="btn btn-primary btn-sm float-bottom">
+                    <p><a class="text-light" href="{% provider_login_url 'facebook' %}">Log In with Facebook</a></p>
                     {% endif %}
                 </div>
             </div>
