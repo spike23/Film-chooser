@@ -18,19 +18,19 @@
 
 <div class="view"
      style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-
-    <div class="container">
+    <div class="shadow-box"></div>
+    <div class="container z-box">
         <div class="py-5 text-center">
-            <h2 class="text-uppercase text-primary font-weight-bold">Film chooser</Colorboard></h2>
+            <h2 class="text-uppercase text-primary font-weight-bold funny-title section-title">Film chooser</Colorboard></h2>
             <p class="lead font-italic text-light">Fill in form.</p>
         </div>
 
         <div class="row">
-            <div class="col-md-4 order-md-2 mb-4">
-                <h4 class="d-flex justify-content-center align-items-center mb-3">
+            <div class="col-md-4 order-md-2 ">
+                <h4 class="d-flex justify-content-center align-items-center">
                     <span class="text-light">Last watching</span>
                 </h4>
-                <ul class="list-group mb-3">
+                <ul class="list-group">
                     {% if last_watching %}
                     {% for film in last_watching %}
                     <li class="list-group-item d-flex justify-content-center lh-condensed">
@@ -43,11 +43,11 @@
                 </ul>
             </div>
 
-            <div class="col-md-8 order-md-1 mt-3">
+            <div class="col-md-8 order-md-1 ">
 
                 <form class="needs-validation" action="{% url 'chooser' %}" method="post">
                     {% csrf_token %}
-                    <div class="mb-3">
+                    <div class="">
                         <label class="text-light" for="username">How many films will you watch ?</label>
                         <div class="input-group rounded">
                             {{ form.films }}
