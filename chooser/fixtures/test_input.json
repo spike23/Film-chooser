@@ -3,119 +3,136 @@
     "model": "chooser.FilmsBase",
     "pk": 1,
     "fields": {
-      "films": "Правило боя"
+      "films": "Правило боя",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 2,
     "fields": {
-      "films": "Призраки Элоиз"
+      "films": "Призраки Элоиз",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 3,
     "fields": {
-      "films": "Битва преподов"
+      "films": "Битва преподов",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 4,
     "fields": {
-      "films": "Могучие рейнджеры"
+      "films": "Могучие рейнджеры",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 5,
     "fields": {
-      "films": "Месть Салазара"
+      "films": "Месть Салазара",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 6,
     "fields": {
-      "films": "Чудо-женщина"
+      "films": "Чудо-женщина",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 7,
     "fields": {
-      "films": "Тачки 3"
+      "films": "Тачки 3",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 8,
     "fields": {
-      "films": "Последний рыцарь"
+      "films": "Последний рыцарь",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 9,
     "fields": {
-      "films": "Гадкий я"
+      "films": "Гадкий я",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 10,
     "fields": {
-      "films": "Подводная эра"
+      "films": "Подводная эра",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 11,
     "fields": {
-      "films": "Время бешеных псов"
+      "films": "Время бешеных псов",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 12,
     "fields": {
-      "films": "Возвращение домой"
+      "films": "Возвращение домой",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 13,
     "fields": {
-      "films": "Война за планету обезьян"
+      "films": "Война за планету обезьян",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 14,
     "fields": {
-      "films": "Дюнкерк"
+      "films": "Дюнкерк",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 15,
     "fields": {
-      "films": "Атомная блондинка"
+      "films": "Атомная блондинка",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 16,
     "fields": {
-      "films": "Пробуждение"
+      "films": "Пробуждение",
+      "last_updated": "2019-06-20"
     }
   },
     {
     "model": "chooser.FilmsBase",
     "pk": 17,
     "fields": {
-      "films": "Стань легендой!"
+      "films": "Стань легендой!",
+      "last_updated": "2019-06-20"
     }
   }
 ]
