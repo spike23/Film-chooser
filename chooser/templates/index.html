@@ -22,7 +22,7 @@
     <div class="container z-box">
         <div class="py-5 text-center">
             <h2 class="text-uppercase text-primary font-weight-bold funny-title section-title">Film chooser</Colorboard></h2>
-            <p class="lead font-italic text-light">Fill in form.</p>
+
         </div>
 
         <div class="row">
@@ -45,10 +45,10 @@
 
             <div class="col-md-8 order-md-1 ">
 
-                <form class="needs-validation" action="{% url 'chooser' %}" method="post">
+                <form class="needs-validation form-film-count col-md-8" action="{% url 'chooser' %}" method="post">
                     {% csrf_token %}
                     <div class="">
-                        <label class="text-light" for="username">How many films will you watch ?</label>
+                        <label class="text-light text-center" for="username">How many films will you watch ?</label>
                         <div class="input-group rounded">
                             {{ form.films }}
                             <div class="invalid-feedback" style="width: 100%;">
