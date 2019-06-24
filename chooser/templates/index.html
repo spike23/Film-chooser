@@ -21,14 +21,14 @@
     <div class="shadow-box"></div>
     <div class="container z-box">
 
-        <div class="btn btn-primary btn-sm float-left">
-            <a href='{% url "index" %}' class="text-light text-center">Home </a>
+        <div class="btn-sm float-left">
+            <a href='{% url "index" %}' class="text-light text-center bth">Home </a>
         </div>
 
 
-        <div class="btn btn-primary btn-sm float-right">
-            <a href='{% url "watching_film_list" %}' class="text-light text-center">WatchingFilms </a>
-            <a href='{% url "base_film_list" %}' class="text-light text-center"> FilmBase</a>
+        <div class="btn-sm float-right">
+            <a href='{% url "watching_film_list" %}' class="text-light text-center btn">WatchingFilms </a>
+            <a href='{% url "base_film_list" %}' class="text-light text-center btn"> FilmBase</a>
         </div>
 
         <div class="py-5 text-center">
@@ -95,7 +95,7 @@
 
 
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Show the result</button>
+                    <button class="btn btn-lg btn-block" type="submit">Show the result</button>
                 </form>
 
             </div>
@@ -103,17 +103,17 @@
 
         <hr class="mb-4">
 
-        <div class="btn btn-primary btn-sm float-left">
+        <div class="btn btn-sm float-left">
             <form method="post" action="{% url 'base_films_uploader' %}" enctype="multipart/form-data">{% csrf_token %}
                 <label class="text-light" for="username">Upload File</label>
                 <input type="file" name="file">
 
         </div>
-        <div class="btn btn-primary btn-sm float-right">
-            <button class="btn btn-primary btn-lg btn-block" type="save">Upload</button>
+        <div class="btn btn-sm float-right">
+            <button class="btn btn-lg btn-block" type="save">Upload</button>
         </div>
         {% if counter %}
-            <div class="btn btn-primary btn-sm float-center">
+            <div class="btn btn-sm float-center">
                 <label class="text-light" for="username">{{ counter }} uploaded films</label>
             </div>
         {% endif %}
@@ -122,29 +122,29 @@
         <footer class="my-5 pt-5 text-light text-center text-small">
 
             {% if last_updated %}
-                <hr class="mb-4">
-                <div class="btn btn-primary btn-sm float-left">
+
+                <div class="btn btn-sm float-left">
                     <p class="mb-1">Last film list updating was: {{ last_updated.last_updated }}</p>
                 </div>
             {% endif %}
 
             <p class="mb-1">&copy; 2019 Nickolay Osiniy</p>
 
-            <div class="btn btn-primary btn-sm float-bottom">
+            <div class="btn btn-sm float-bottom">
                 {% if user.is_authenticated %}
                     <p class="mb-1">{{ user.username }}</p>
                     <p><a class="text-light" href="{% url 'logout' %}">Log out</a></p>
                 {% else %}
-                    <div class="btn btn-primary btn-sm float-bottom">
+                    <div class="btn btn-sm float-bottom">
                         <p><a class="text-light" href="{% url 'signup' %}">Sign Up</a></p>
                     </div>
-                    <div class="btn btn-primary btn-sm float-bottom">
+                    <div class="btn btn-sm float-bottom">
                         <p><a class="text-light" href="{% url 'login' %}">Log In </a></p>
                     </div>
-                    <div class="btn btn-primary btn-sm float-bottom">
+                    <div class="btn btn-sm float-bottom">
                         <p><a class="text-light" href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
                     </div>
-                    <div class="btn btn-primary btn-sm float-bottom">
+                    <div class="btn btn-sm float-bottom">
                     <p><a class="text-light" href="{% provider_login_url 'facebook' %}">Log In with Facebook</a></p>
                 {% endif %}
                 </div>
