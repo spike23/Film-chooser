@@ -3,6 +3,7 @@ import io
 import random
 
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
@@ -10,20 +11,27 @@ from datetime import datetime
 from .forms import FilmsForm
 from .models import FilmsBase, FilmsToWatching
 
-template_name = 'index.html'
+main_page_template = 'index.html'
+film_list_template = 'film_list.html'
+watching_list_template = 'watching_list.html'
 
 
 def index(request):
     current_user = request.user.id
     form = FilmsForm(current_user)
     last_list = FilmsToWatching.objects.all().filter(user_id=current_user)
+    paginator = Paginator(last_list, 5)
+    page = request.GET.get('page')
+    film_list_latest = paginator.get_page(page)
+
     updated = FilmsBase.objects.latest('last_updated')
+
     context = {
         'form': form,
-        'last_watching': last_list,
+        'last_watching': film_list_latest,
         'last_updated': updated
     }
-    return render(request, template_name, context)
+    return render(request, main_page_template, context)
 
 
 @login_required
@@ -41,20 +49,14 @@ def chooser(request):
             film_watch.save()
             base_film = FilmsBase.objects.get(films=film, user_id=current_user)
             base_film.delete()
-        random_list = FilmsToWatching.objects.all().filter(user_id=current_user)
 
-        context = {
-            'form': form,
-            'chooser': random_list,
-        }
-
-        return render(request, template_name, context)
+        return redirect('watching_film_list')
 
     context = {
         'form': form
     }
 
-    return render(request, template_name, context)
+    return render(request, main_page_template, context)
 
 
 def random_films(films, quantity):
@@ -88,4 +90,34 @@ def base_films_uploader(request):
         'last_watching': last_list,
     }
 
-    return render(request, template_name, context)
+    return render(request, main_page_template, context)
+
+
+@login_required
+def base_film_list(request):
+    current_user = request.user.id
+    films = FilmsBase.objects.filter(user_id=current_user).values_list('films', flat=True)
+    paginator = Paginator(films, 7)
+    page = request.GET.get('page')
+    film_list = paginator.get_page(page)
+
+    context = {
+        'films': film_list
+    }
+    
+    return render(request, film_list_template, context)
+
+
+@login_required
+def watching_film_list(request):
+    current_user = request.user.id
+    films = FilmsToWatching.objects.all().filter(user_id=current_user)
+    paginator = Paginator(films, 7)
+    page = request.GET.get('page')
+    film_list = paginator.get_page(page)
+
+    context = {
+        'films': film_list
+    }
+
+    return render(request, watching_list_template, context)

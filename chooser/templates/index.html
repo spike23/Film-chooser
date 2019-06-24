@@ -20,6 +20,17 @@
      style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <div class="shadow-box"></div>
     <div class="container z-box">
+
+        <div class="btn btn-primary btn-sm float-left">
+            <a href='{% url "index" %}' class="text-light text-center">Home </a>
+        </div>
+
+
+        <div class="btn btn-primary btn-sm float-right">
+            <a href='{% url "watching_film_list" %}' class="text-light text-center">WatchingFilms </a>
+            <a href='{% url "base_film_list" %}' class="text-light text-center"> FilmBase</a>
+        </div>
+
         <div class="py-5 text-center">
             <h2 class="text-uppercase text-primary font-weight-bold funny-title section-title">Film chooser</h2>
 
@@ -34,13 +45,32 @@
                     {% if last_watching %}
                         {% for film in last_watching %}
                             <li class="list-group-item d-flex justify-content-center lh-condensed">
-                                <h6 class="my-0"> {{ film.films }} </h6>
+                                <h6 class="my-0 text-light"> {{ film.films }} </h6>
                             </li>
                         {% endfor %}
                     {% endif %}
-
-
                 </ul>
+                {% if last_watching.has_other_pages %}
+                    <ul class="pagination">
+                        {% if last_watching.has_previous %}
+                            <li><a href="?page={{ last_watching.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in last_watching.paginator.page_range %}
+                            {% if last_watching.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if last_watching.has_next %}
+                            <li><a href="?page={{ last_watching.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
             </div>
 
             <div class="col-md-8 order-md-1 ">
@@ -67,14 +97,6 @@
                     <hr class="mb-4">
                     <button class="btn btn-primary btn-lg btn-block" type="submit">Show the result</button>
                 </form>
-
-                {% if chooser %}
-                    {% for film in chooser %}
-                        <div class="col-md-4  text-muted alert alert-success border border-primary mt-4" role="alert">
-                            {{ film.films }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
 
             </div>
         </div>
