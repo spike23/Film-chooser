@@ -4,7 +4,9 @@ header,
 .view {
   height: 100%;
 }
-
+ body{
+   background-color: #000407;
+ }
 .view {
   position: relative;
 }
@@ -24,6 +26,11 @@ header,
   z-index: 5;
 }
 
+/*Watch Box*/
+
+.watch-box{
+  margin-top:50px;
+}
 .input-group input,
 .list-group li{
   background: transparent;
@@ -60,6 +67,18 @@ header,
 
 h6 {
   line-height: 1.7;
+}
+
+.list-group-item h6{
+  color: #fff;
+}
+
+.title-name{
+  font-weight:bold ;
+}
+
+hr {
+  background-color: #fff;
 }
 /* Style for name */
 
@@ -103,3 +122,53 @@ h2.funny-title{
   -moz-animation:move-background 20s infinite linear alternate;
   animation:move-background 20s infinite linear alternate;
 }
+
+/* Button style*/
+
+.btn {
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  padding: 20px 30px;
+  position: relative;
+  color: white;
+  border: 1px solid rgba(255,255,255,.4);
+  background: none;
+  font-weight: 300;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.btn:before,
+.btn:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  box-sizing: border-box;
+}
+.btn:before {
+  bottom: 0;
+  left: 0;
+  border-left: 1px solid white;
+  border-top: 1px solid white;
+  transition: 0s ease opacity .8s, .2s ease width .4s, .2s ease height .6s;
+}
+.btn:after {
+  top: 0;
+  right: 0;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  transition: 0s ease opacity .4s,
+  .2s ease width , .2s ease height .2s;
+}
+.btn:hover:before,
+.btn:hover:after{
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+}
+.btn:hover:before {transition: 0s ease opacity 0s, .2s ease height, .2s ease width .2s;}
+.btn:hover:after {transition: 0s ease opacity .4s, .2s ease height .4s , .2s ease width .6s;}
+.btn:hover {background: rgba(255,255,255,.4);}
