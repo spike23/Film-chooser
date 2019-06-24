@@ -13,34 +13,64 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'main.css'%}"/>
+    <link rel="stylesheet" href="{% static 'main.css' %}"/>
 </head>
 
 <div class="view"
      style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <div class="shadow-box"></div>
     <div class="container z-box">
+
+        <div class="btn btn-primary btn-sm float-left">
+            <a href='{% url "index" %}' class="text-light text-center">Home </a>
+        </div>
+
+
+        <div class="btn btn-primary btn-sm float-right">
+            <a href='{% url "watching_film_list" %}' class="text-light text-center">WatchingFilms </a>
+            <a href='{% url "base_film_list" %}' class="text-light text-center"> FilmBase</a>
+        </div>
+
         <div class="py-5 text-center">
-            <h2 class="text-uppercase text-primary font-weight-bold funny-title section-title">Film chooser</Colorboard></h2>
+            <h2 class="text-uppercase text-primary font-weight-bold funny-title section-title">Film chooser</h2>
 
         </div>
 
         <div class="row">
-            <div class="col-md-4 order-md-2 watch-box">
+            <div class="col-md-4 order-md-2 ">
                 <h4 class="d-flex justify-content-center align-items-center">
-                    <span class="text-light title-name">Last watching</span>
+                    <span class="text-light">Last watching</span>
                 </h4>
                 <ul class="list-group">
                     {% if last_watching %}
-                    {% for film in last_watching %}
-                    <li class="list-group-item d-flex justify-content-center lh-condensed">
-                        <h6 class="my-0"> {{ film.films }} </h6>
-                    </li>
-                    {% endfor %}
+                        {% for film in last_watching %}
+                            <li class="list-group-item d-flex justify-content-center lh-condensed">
+                                <h6 class="my-0 text-light"> {{ film.films }} </h6>
+                            </li>
+                        {% endfor %}
                     {% endif %}
-
-
                 </ul>
+                {% if last_watching.has_other_pages %}
+                    <ul class="pagination">
+                        {% if last_watching.has_previous %}
+                            <li><a href="?page={{ last_watching.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in last_watching.paginator.page_range %}
+                            {% if last_watching.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if last_watching.has_next %}
+                            <li><a href="?page={{ last_watching.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
             </div>
 
             <div class="col-md-8 order-md-1 ">
@@ -48,72 +78,75 @@
                 <form class="needs-validation form-film-count col-md-8" action="{% url 'chooser' %}" method="post">
                     {% csrf_token %}
                     <div class="">
-                        <h4 class="text-light text-center title-name" for="username">How many films will you watch ?</h4>
+                        <label class="text-light text-center" for="username">How many films will you watch ?</label>
                         <div class="input-group rounded">
+                            {% if form.errors %}
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <div class="alert alert-danger">
+                                            <strong>{{ error|escape }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
                             {{ form.films }}
-                            <div class="invalid-feedback" style="width: 100%;">
-                                Films is required.
-                            </div>
                         </div>
                     </div>
 
 
                     <hr class="mb-4">
-                    <button class="btn btn-lg btn-block" type="submit">Show the result</button>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Show the result</button>
                 </form>
-
-                {% if chooser %}
-                {% for film in chooser %}
-                <div class="col-md-4  text-muted alert alert-success border border-primary mt-4" role="alert">
-                    {{ film.films }}
-                </div>
-                {% endfor %}
-                {% endif %}
 
             </div>
         </div>
 
         <hr class="mb-4">
 
-        <div class="btn btn-sm float-left">
+        <div class="btn btn-primary btn-sm float-left">
             <form method="post" action="{% url 'base_films_uploader' %}" enctype="multipart/form-data">{% csrf_token %}
                 <label class="text-light" for="username">Upload File</label>
                 <input type="file" name="file">
 
         </div>
-        <div class="btn  btn-sm float-right">
-            <button class="btn btn-lg btn-block" type="save">Upload</button>
+        <div class="btn btn-primary btn-sm float-right">
+            <button class="btn btn-primary btn-lg btn-block" type="save">Upload</button>
         </div>
+        {% if counter %}
+            <div class="btn btn-primary btn-sm float-center">
+                <label class="text-light" for="username">{{ counter }} uploaded films</label>
+            </div>
+        {% endif %}
         </form>
 
         <footer class="my-5 pt-5 text-light text-center text-small">
 
             {% if last_updated %}
-
-                <div class="btn btn-sm float-left">
+                <hr class="mb-4">
+                <div class="btn btn-primary btn-sm float-left">
                     <p class="mb-1">Last film list updating was: {{ last_updated.last_updated }}</p>
                 </div>
             {% endif %}
 
             <p class="mb-1">&copy; 2019 Nickolay Osiniy</p>
 
-            <div class="btn btn-sm float-bottom">
+            <div class="btn btn-primary btn-sm float-bottom">
                 {% if user.is_authenticated %}
-                <p class="mb-1">{{ user.username }}</p>
-                <p><a class="text-light" href="{% url 'logout' %}">Log out</a></p>
+                    <p class="mb-1">{{ user.username }}</p>
+                    <p><a class="text-light" href="{% url 'logout' %}">Log out</a></p>
                 {% else %}
-                <div class="btn btn-sm float-bottom">
-                    <p><a class="text-light" href="{% url 'signup' %}">Sign Up</a></p>
-                </div>
-                <div class="btn btn-sm float-bottom">
-                    <p><a class="text-light" href="{% url 'login' %}">Log In </a></p>
-                </div>
-                <div class="btn btn-sm float-bottom">
-                    <p><a class="text-light" href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
-                </div>
-                <div class="btn btn-sm float-bottom">
+                    <div class="btn btn-primary btn-sm float-bottom">
+                        <p><a class="text-light" href="{% url 'signup' %}">Sign Up</a></p>
+                    </div>
+                    <div class="btn btn-primary btn-sm float-bottom">
+                        <p><a class="text-light" href="{% url 'login' %}">Log In </a></p>
+                    </div>
+                    <div class="btn btn-primary btn-sm float-bottom">
+                        <p><a class="text-light" href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
+                    </div>
+                    <div class="btn btn-primary btn-sm float-bottom">
                     <p><a class="text-light" href="{% provider_login_url 'facebook' %}">Log In with Facebook</a></p>
-                    {% endif %}
+                {% endif %}
                 </div>
             </div>
 
