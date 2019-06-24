@@ -1,0 +1,120 @@
+<!doctype html>
+{% load static %}
+{% load socialaccount %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Film chooser</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'main.css' %}"/>
+</head>
+
+<div class="view"
+     style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div class="shadow-box"></div>
+    <div class="container z-box">
+
+        <div class="btn btn-primary btn-sm float-left">
+            <a href='{% url "index" %}' class="text-light text-center">Home </a>
+        </div>
+
+        <div class="btn btn-primary btn-sm float-right">
+            <a href='{% url "watching_film_list" %}' class="text-light text-center">WatchingFilms </a>
+        </div>
+
+        <div class="py-5 text-center">
+            <h2 class="text-uppercase text-primary font-weight-bold funny-title section-title">Film chooser</h2>
+        </div>
+
+        <div class="col-md-4 order-md-2 ">
+            <h4 class="d-flex justify-content-center align-items-center">
+                <span class="text-light">Films in base</span>
+            </h4>
+
+            <ul class="list-group">
+                {% if films %}
+
+                    {% for film in films %}
+                        {% csrf_token %}
+                        <li class="list-group-item d-flex justify-content-center lh-condensed">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Delete" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    <h6 class="my-0 text-light"> {{ film }} </h6>
+                                </label>
+                            </div>
+                        </li>
+                    {% endfor %}
+
+                {% endif %}
+
+            </ul>
+        </div>
+
+        {% if films.has_other_pages %}
+            <ul class="pagination">
+                {% if films.has_previous %}
+                    <li><a href="?page={{ films.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+                {% for i in films.paginator.page_range %}
+                    {% if films.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if films.has_next %}
+                    <li><a href="?page={{ films.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+
+        <form class="needs-validation btn-sm float-right col-md-2" action="{% url 'delete_films' %}"
+              method="post">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Delete checked</button>
+        </form>
+
+        <footer class="my-5 pt-5 text-light text-center text-small">
+
+
+            <p class="mb-1">&copy; 2019 Nickolay Osiniy</p>
+
+            <div class="btn btn-primary btn-sm float-bottom">
+                {% if user.is_authenticated %}
+                    <p class="mb-1">{{ user.username }}</p>
+                    <p><a class="text-light" href="{% url 'logout' %}">Log out</a></p>
+                {% else %}
+                    <div class="btn btn-primary btn-sm float-bottom">
+                        <p><a class="text-light" href="{% url 'signup' %}">Sign Up</a></p>
+                    </div>
+                    <div class="btn btn-primary btn-sm float-bottom">
+                        <p><a class="text-light" href="{% url 'login' %}">Log In </a></p>
+                    </div>
+                    <div class="btn btn-primary btn-sm float-bottom">
+                        <p><a class="text-light" href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
+                    </div>
+                    <div class="btn btn-primary btn-sm float-bottom">
+                    <p><a class="text-light" href="{% provider_login_url 'facebook' %}">Log In with Facebook</a></p>
+                {% endif %}
+                </div>
+            </div>
+
+        </footer>
+    </div>
+</div>
+<script>
+    new WOW().init();
+</script>
+</body>
+</html>

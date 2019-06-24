@@ -4,7 +4,8 @@
     "pk": 1,
     "fields": {
       "films": "Правило боя",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -12,7 +13,8 @@
     "pk": 2,
     "fields": {
       "films": "Призраки Элоиз",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -20,7 +22,8 @@
     "pk": 3,
     "fields": {
       "films": "Битва преподов",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -28,7 +31,8 @@
     "pk": 4,
     "fields": {
       "films": "Могучие рейнджеры",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -36,7 +40,8 @@
     "pk": 5,
     "fields": {
       "films": "Месть Салазара",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -44,7 +49,8 @@
     "pk": 6,
     "fields": {
       "films": "Чудо-женщина",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -52,7 +58,8 @@
     "pk": 7,
     "fields": {
       "films": "Тачки 3",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -60,7 +67,8 @@
     "pk": 8,
     "fields": {
       "films": "Последний рыцарь",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -68,7 +76,8 @@
     "pk": 9,
     "fields": {
       "films": "Гадкий я",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -76,7 +85,8 @@
     "pk": 10,
     "fields": {
       "films": "Подводная эра",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -84,7 +94,8 @@
     "pk": 11,
     "fields": {
       "films": "Время бешеных псов",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -92,7 +103,8 @@
     "pk": 12,
     "fields": {
       "films": "Возвращение домой",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -100,7 +112,8 @@
     "pk": 13,
     "fields": {
       "films": "Война за планету обезьян",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -108,7 +121,8 @@
     "pk": 14,
     "fields": {
       "films": "Дюнкерк",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -116,7 +130,8 @@
     "pk": 15,
     "fields": {
       "films": "Атомная блондинка",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -124,7 +139,8 @@
     "pk": 16,
     "fields": {
       "films": "Пробуждение",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   },
     {
@@ -132,7 +148,8 @@
     "pk": 17,
     "fields": {
       "films": "Стань легендой!",
-      "last_updated": "2019-06-20"
+      "last_updated": "2019-06-20",
+      "user_id": 1
     }
   }
 ]
