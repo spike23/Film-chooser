@@ -22,7 +22,7 @@
     <div class="container z-box">
 
         <div class="btn-sm float-left">
-            <a href='{% url "index" %}' class="text-light text-center bth">Home </a>
+            <a href='{% url "index" %}' class="text-light text-center btn">Home </a>
         </div>
 
 
@@ -37,7 +37,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4 order-md-2 ">
+            <div class="col-md-4 order-md-2 watch-box">
                 <h4 class="d-flex justify-content-center align-items-center">
                     <span class="text-light">Last watching</span>
                 </h4>
@@ -103,17 +103,17 @@
 
         <hr class="mb-4">
 
-        <div class="btn btn-sm float-left">
+        <div class="btn-sm float-left">
             <form method="post" action="{% url 'base_films_uploader' %}" enctype="multipart/form-data">{% csrf_token %}
                 <label class="text-light" for="username">Upload File</label>
                 <input type="file" name="file">
 
         </div>
-        <div class="btn btn-sm float-right">
+        <div class="btn-sm float-right">
             <button class="btn btn-lg btn-block" type="save">Upload</button>
         </div>
         {% if counter %}
-            <div class="btn btn-sm float-center">
+            <div class=" btn-sm float-center">
                 <label class="text-light" for="username">{{ counter }} uploaded films</label>
             </div>
         {% endif %}
