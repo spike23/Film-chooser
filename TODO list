@@ -1,3 +1,4 @@
 front end
-removing or not film from base
 reset password
+on watching list: delete this films from base
+base_films: delete this films from base

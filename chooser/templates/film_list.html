@@ -37,17 +37,26 @@
             <h4 class="d-flex justify-content-center align-items-center">
                 <span class="text-light">Films in base</span>
             </h4>
+
             <ul class="list-group">
                 {% if films %}
+
                     {% for film in films %}
+                        {% csrf_token %}
                         <li class="list-group-item d-flex justify-content-center lh-condensed">
-                            <h6 class="my-0 text-light"> {{ film }} </h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Delete" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    <h6 class="my-0 text-light"> {{ film }} </h6>
+                                </label>
+                            </div>
                         </li>
                     {% endfor %}
+
                 {% endif %}
+
             </ul>
         </div>
-
 
         {% if films.has_other_pages %}
             <ul class="pagination">
@@ -70,6 +79,11 @@
                 {% endif %}
             </ul>
         {% endif %}
+
+        <form class="needs-validation btn-sm float-right col-md-2" action="{% url 'delete_films' %}"
+              method="post">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Delete checked</button>
+        </form>
 
         <footer class="my-5 pt-5 text-light text-center text-small">
 

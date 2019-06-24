@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
-from .forms import FilmsForm
+from .forms import FilmsForm, DeleteFilmsForm
 from .models import FilmsBase, FilmsToWatching
 
 main_page_template = 'index.html'
@@ -121,3 +121,12 @@ def watching_film_list(request):
     }
 
     return render(request, watching_list_template, context)
+
+
+@login_required
+def delete_films(request):
+    current_user = request.user_id
+    form = DeleteFilmsForm(request.POST)
+    if request.method == 'POST' and form.is_valid():
+        removing = form.cleaned_data.get('del_films')
+

@@ -19,3 +19,7 @@ class FilmsForm(forms.Form):
             raise forms.ValidationError('You choose value that larger than you have in your film list.')
 
         return films
+
+
+class DeleteFilmsForm(forms.Form):
+    del_films = forms.BooleanField(widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-control'}))

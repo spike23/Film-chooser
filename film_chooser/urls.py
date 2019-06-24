@@ -24,6 +24,7 @@ urlpatterns = [
     path('chooser', views.chooser, name='chooser'),
     path('film-list/', views.base_film_list, name='base_film_list'),
     path('watching-list/', views.watching_film_list, name='watching_film_list'),
+    path('delete-list/', views.delete_films, name='delete_films'),
     path('upload-csv/', views.base_films_uploader, name='base_films_uploader'),
     path('users/', include('users.urls')),
     path('users/', include('django.contrib.auth.urls')),
