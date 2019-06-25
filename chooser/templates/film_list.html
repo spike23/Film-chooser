@@ -21,14 +21,14 @@
     <div class="shadow-box"></div>
     <div class="container z-box">
         <div class="main-menu clearfix">
-        <div class="btn-sm float-left">
-            <a href='{% url "index" %}' class="text-light text-center btn">Home </a>
-        </div>
+            <div class="btn-sm float-left">
+                <a href='{% url "index" %}' class="text-light text-center btn">Home </a>
+            </div>
 
 
-        <div class="btn-sm float-right">
-            <a href='{% url "watching_film_list" %}' class="text-light text-center btn">WatchingFilms </a>
-        </div>
+            <div class="btn-sm float-right">
+                <a href='{% url "watching_film_list" %}' class="text-light text-center btn">WatchingFilms </a>
+            </div>
         </div>
 
         <div class="py-5 text-center">
@@ -39,29 +39,30 @@
             <h4 class="d-flex justify-content-center align-items-center">
                 <span class="text-light">Films in base</span>
             </h4>
-        <form class="needs-validation btn-sm col-md-12" action="{% url 'delete_films' %}"
-              method="post">
-                        <ul class="list-group">
-                {% if films %}
+            <form class="needs-validation btn-sm col-md-12" action="{% url 'delete_films_base' %}"
+                  method="post">                        {% csrf_token %}
+                <ul class="list-group">
+                    {% if films %}
 
-                    {% for film in films %}
-                        {% csrf_token %}
-                        <li class="list-group-item d-flex justify-content-center lh-condensed">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Delete" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    <h6 class="my-0 text-light"> {{ film }} </h6>
-                                </label>
-                            </div>
-                        </li>
-                    {% endfor %}
+                        {% for film in films %}
 
-                {% endif %}
+                            <li class="list-group-item d-flex justify-content-center lh-condensed">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value={{ film.pk }} name="delete"
+                                           id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        <h6 class="my-0 text-light"> {{ film.films }} </h6>
+                                    </label>
+                                </div>
+                            </li>
+                        {% endfor %}
 
-            </ul>
+                    {% endif %}
 
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Delete checked</button>
-        </form>
+                </ul>
+
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Delete checked</button>
+            </form>
 
         </div>
 
@@ -94,22 +95,22 @@
 
             <p class="mb-1">&copy; 2019 Nickolay Osiniy</p>
 
-            <div class="btn btn-primary btn-sm float-bottom">
+            <div class="btn-sm float-bottom">
                 {% if user.is_authenticated %}
-                    <p class="mb-1">{{ user.username }}</p>
-                    <p><a class="text-light" href="{% url 'logout' %}">Log out</a></p>
+{#                    <p class="mb-1 btn float-left">{{ user.username }}</p>#}
+                    <p><a class="text-light btn" href="{% url 'logout' %}">{{ user.username }} Log out</a></p>
                 {% else %}
-                    <div class="btn btn-primary btn-sm float-bottom">
-                        <p><a class="text-light" href="{% url 'signup' %}">Sign Up</a></p>
+                    <div class="btn-sm float-bottom">
+                        <p><a class="text-light btn" href="{% url 'signup' %}">Sign Up</a></p>
                     </div>
-                    <div class="btn btn-primary btn-sm float-bottom">
-                        <p><a class="text-light" href="{% url 'login' %}">Log In </a></p>
+                    <div class="btn-sm float-bottom">
+                        <p><a class="text-light btn" href="{% url 'login' %}">Log In </a></p>
                     </div>
-                    <div class="btn btn-primary btn-sm float-bottom">
-                        <p><a class="text-light" href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
+                    <div class="btn-sm float-bottom">
+                        <p><a class="text-light btn" href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
                     </div>
-                    <div class="btn btn-primary btn-sm float-bottom">
-                    <p><a class="text-light" href="{% provider_login_url 'facebook' %}">Log In with Facebook</a></p>
+                    <div class="btn-sm float-bottom">
+                    <p><a class="text-light btn" href="{% provider_login_url 'facebook' %}">Log In with Facebook</a></p>
                 {% endif %}
                 </div>
             </div>

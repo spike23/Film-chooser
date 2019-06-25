@@ -1,14 +1,14 @@
 import csv
 import io
 import random
-
-from django.contrib import messages
-from django.core.paginator import Paginator
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
-from .forms import FilmsForm, DeleteFilmsForm
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.shortcuts import render, redirect
+
+from .forms import FilmsForm
 from .models import FilmsBase, FilmsToWatching
 
 main_page_template = 'index.html'
@@ -96,7 +96,7 @@ def base_films_uploader(request):
 @login_required
 def base_film_list(request):
     current_user = request.user.id
-    films = FilmsBase.objects.filter(user_id=current_user).values_list('films', flat=True).order_by('films')
+    films = FilmsBase.objects.filter(user_id=current_user).order_by('films')
     paginator = Paginator(films, 7)
     page = request.GET.get('page')
     film_list = paginator.get_page(page)
@@ -111,7 +111,7 @@ def base_film_list(request):
 @login_required
 def watching_film_list(request):
     current_user = request.user.id
-    films = FilmsToWatching.objects.all().filter(user_id=current_user).order_by('films')
+    films = FilmsToWatching.objects.filter(user_id=current_user).order_by('films')
     paginator = Paginator(films, 7)
     page = request.GET.get('page')
     film_list = paginator.get_page(page)
@@ -124,9 +124,16 @@ def watching_film_list(request):
 
 
 @login_required
-def delete_films(request):
-    current_user = request.user_id
-    form = DeleteFilmsForm(request.POST)
-    if request.method == 'POST' and form.is_valid():
-        removing = form.cleaned_data.get('del_films')
+def delete_films_base(request):
+    current_user = request.user.id
+    values = request.POST.getlist('delete')
+    FilmsBase.objects.filter(pk__in=values, user_id=current_user).delete()
+    return redirect('base_film_list')
 
+
+@login_required
+def delete_films_watching(request):
+    current_user = request.user.id
+    values = request.POST.getlist('delete')
+    FilmsToWatching.objects.filter(pk__in=values, user_id=current_user).delete()
+    return redirect('watching_film_list')

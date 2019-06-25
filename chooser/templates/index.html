@@ -129,22 +129,22 @@
 
             <p class="mb-1">&copy; 2019 Nickolay Osiniy</p>
 
-            <div class="btn btn-sm float-bottom">
+            <div class="btn-sm float-left">
                 {% if user.is_authenticated %}
-                    <p class="mb-1">{{ user.username }}</p>
-                    <p><a class="text-light" href="{% url 'logout' %}">Log out</a></p>
+{#                    <p class="mb-1 btn float-left">{{ user.username }}</p>#}
+                    <p><a class="text-light btn" href="{% url 'logout' %}">{{ user.username }} Log out</a></p>
                 {% else %}
-                    <div class="btn btn-sm float-bottom">
-                        <p><a class="text-light" href="{% url 'signup' %}">Sign Up</a></p>
+                    <div class="btn-sm float-left">
+                        <p><a class="text-light btn" href="{% url 'signup' %}">Sign Up</a></p>
                     </div>
-                    <div class="btn btn-sm float-bottom">
-                        <p><a class="text-light" href="{% url 'login' %}">Log In </a></p>
+                    <div class="btn-sm float-left">
+                        <p><a class="text-light btn" href="{% url 'login' %}">Log In </a></p>
                     </div>
-                    <div class="btn btn-sm float-bottom">
-                        <p><a class="text-light" href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
+                    <div class="btn-sm float-left">
+                        <p><a class="text-light btn" href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
                     </div>
-                    <div class="btn btn-sm float-bottom">
-                    <p><a class="text-light" href="{% provider_login_url 'facebook' %}">Log In with Facebook</a></p>
+                    <div class="btn-sm float-left">
+                    <p><a class="text-light btn" href="{% provider_login_url 'facebook' %}">Log In with Facebook</a></p>
                 {% endif %}
                 </div>
             </div>
