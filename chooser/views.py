@@ -19,7 +19,7 @@ watching_list_template = 'watching_list.html'
 def index(request):
     current_user = request.user.id
     form = FilmsForm(current_user)
-    last_list = FilmsToWatching.objects.all().filter(user_id=current_user)
+    last_list = FilmsToWatching.objects.all().filter(user_id=current_user).order_by('films')
     paginator = Paginator(last_list, 5)
     page = request.GET.get('page')
     film_list_latest = paginator.get_page(page)
@@ -96,7 +96,7 @@ def base_films_uploader(request):
 @login_required
 def base_film_list(request):
     current_user = request.user.id
-    films = FilmsBase.objects.filter(user_id=current_user).values_list('films', flat=True)
+    films = FilmsBase.objects.filter(user_id=current_user).values_list('films', flat=True).order_by('films')
     paginator = Paginator(films, 7)
     page = request.GET.get('page')
     film_list = paginator.get_page(page)
@@ -111,7 +111,7 @@ def base_film_list(request):
 @login_required
 def watching_film_list(request):
     current_user = request.user.id
-    films = FilmsToWatching.objects.all().filter(user_id=current_user)
+    films = FilmsToWatching.objects.all().filter(user_id=current_user).order_by('films')
     paginator = Paginator(films, 7)
     page = request.GET.get('page')
     film_list = paginator.get_page(page)
