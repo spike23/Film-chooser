@@ -14,13 +14,22 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'main.css' %}"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script>
+        $(function () {
+  $(document).scroll(function () {
+    var $nav = $(".main-menu");
+    $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+  });
+});
+    </script>
 </head>
 
 <div class="view"
      style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <div class="shadow-box"></div>
-    <div class="container z-box">
-        <div class="main-menu clearfix">
+            <div class="main-menu clearfix">
+                <div class="container">
             <div class="btn-sm float-left">
                 <a href='{% url "index" %}' class="text-light text-center btn">Home </a>
             </div>
@@ -29,7 +38,9 @@
             <div class="btn-sm float-right">
                 <a href='{% url "base_film_list" %}' class="text-light text-center btn"> FilmBase</a>
             </div>
-        </div>
+                </div></div>
+
+    <div class="container z-box">
 
         <div class="py-5 text-center">
             <h2 class="text-uppercase text-primary font-weight-bold funny-title section-title">Film chooser</h2>
