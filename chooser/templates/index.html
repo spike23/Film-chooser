@@ -20,24 +20,23 @@
      style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <div class="shadow-box"></div>
     <div class="container z-box">
+        <div class="main-menu clearfix">
+            <div class="btn-sm float-left">
+            <a href='{% url "index" %}' class="text-light text-center btn">Home </a>
+            </div>
 
-        <div class="btn-sm float-left">
-            <a href='{% url "index" %}' class="text-light text-center bth">Home </a>
+            <div class="btn-sm float-right">
+              <a href='{% url "watching_film_list" %}' class="text-light text-center btn">WatchingFilms </a>
+              <a href='{% url "base_film_list" %}' class="text-light text-center btn"> FilmBase</a>
+            </div>
         </div>
-
-
-        <div class="btn-sm float-right">
-            <a href='{% url "watching_film_list" %}' class="text-light text-center btn">WatchingFilms </a>
-            <a href='{% url "base_film_list" %}' class="text-light text-center btn"> FilmBase</a>
-        </div>
-
         <div class="py-5 text-center">
             <h2 class="text-uppercase text-primary font-weight-bold funny-title section-title">Film chooser</h2>
 
         </div>
 
         <div class="row">
-            <div class="col-md-4 order-md-2 ">
+            <div class="col-md-4 order-md-2 watch-box">
                 <h4 class="d-flex justify-content-center align-items-center">
                     <span class="text-light">Last watching</span>
                 </h4>
@@ -103,30 +102,30 @@
 
         <hr class="mb-4">
 
-        <div class="btn btn-sm float-left">
-            <form method="post" action="{% url 'base_films_uploader' %}" enctype="multipart/form-data">{% csrf_token %}
-                <label class="text-light" for="username">Upload File</label>
-                <input type="file" name="file">
 
-        </div>
-        <div class="btn btn-sm float-right">
-            <button class="btn btn-lg btn-block" type="save">Upload</button>
-        </div>
+            <form method="post" action="{% url 'base_films_uploader' %}" enctype="multipart/form-data">{% csrf_token %}
+                    <h3 class="text-light text-left" >Upload your list film:</h3>
+                    <input type="file" id="username" name="file">
+                    <button class="btn btn-sm" type="save">Upload</button>
+
         {% if counter %}
-            <div class="btn btn-sm float-center">
+
                 <label class="text-light" for="username">{{ counter }} uploaded films</label>
-            </div>
+
         {% endif %}
         </form>
 
-        <footer class="my-5 pt-5 text-light text-center text-small">
+                    {% if last_updated %}
 
-            {% if last_updated %}
-
-                <div class="btn btn-sm float-left">
+                <div class="last-upload btn-sm">
                     <p class="mb-1">Last film list updating was: {{ last_updated.last_updated }}</p>
                 </div>
             {% endif %}
+
+
+        <footer class="my-5 pt-5 text-light text-center text-small">
+
+
 
             <p class="mb-1">&copy; 2019 Nickolay Osiniy</p>
 
