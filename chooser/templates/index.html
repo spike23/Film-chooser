@@ -17,28 +17,29 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script>
         $(function () {
-  $(document).scroll(function () {
-    var $nav = $(".main-menu");
-    $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-  });
-});
+            $(document).scroll(function () {
+                var $nav = $(".main-menu");
+                $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+            });
+        });
     </script>
 </head>
 
 <div class="view"
      style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <div class="shadow-box"></div>
-            <div class="main-menu clearfix">
-                <div class="container">
+    <div class="main-menu clearfix">
+        <div class="container">
             <div class="btn-sm float-left">
-            <a href='{% url "index" %}' class="text-light text-center btn btn-white">Home </a>
+                <a href='{% url "index" %}' class="text-light text-center btn btn-white">Home </a>
             </div>
 
             <div class="btn-sm float-right">
-              <a href='{% url "watching_film_list" %}' class="text-light text-center btn btn-white">WatchingFilms </a>
-              <a href='{% url "base_film_list" %}' class="text-light text-center btn btn-white"> FilmBase</a>
+                <a href='{% url "watching_film_list" %}' class="text-light text-center btn btn-white">WatchingFilms </a>
+                <a href='{% url "base_film_list" %}' class="text-light text-center btn btn-white"> FilmBase</a>
             </div>
-                </div></div>
+        </div>
+    </div>
     <div class="container z-box">
 
         <div class="py-5 text-center">
@@ -114,35 +115,34 @@
         <hr class="mb-4">
 
 
-            <form method="post" action="{% url 'base_films_uploader' %}" enctype="multipart/form-data">{% csrf_token %}
-                    <h3 class="text-light text-left" >Upload your list film:</h3>
-                    <input type="file" id="username" name="file">
-                    <button class="btn btn-sm" type="save">Upload</button>
+        <form method="post" action="{% url 'base_films_uploader' %}" enctype="multipart/form-data">{% csrf_token %}
+            <h3 class="text-light text-left">Upload your list film:</h3>
+            <input type="file" id="username" name="file">
+            <button class="btn btn-sm" type="save">Upload</button>
 
-        {% if counter %}
+            {% if counter %}
 
                 <label class="text-light" for="username">{{ counter }} uploaded films</label>
 
-        {% endif %}
+            {% endif %}
         </form>
 
-                    {% if last_updated %}
+        {% if last_updated %}
 
-                <div class="last-upload btn-sm">
-                    <p class="mb-1">Last film list updating was: {{ last_updated.last_updated }}</p>
-                </div>
-            {% endif %}
+            <div class="last-upload btn-sm">
+                <p class="mb-1">Last film list updating was: {{ last_updated.last_updated }}</p>
+            </div>
+        {% endif %}
 
 
         <footer class="my-5 pt-5 text-light text-center text-small">
-
 
 
             <p class="mb-1">&copy; 2019 Nickolay Osiniy</p>
 
             <div class="btn-sm float-left">
                 {% if user.is_authenticated %}
-{#                    <p class="mb-1 btn float-left">{{ user.username }}</p>#}
+                    {#                    <p class="mb-1 btn float-left">{{ user.username }}</p>#}
                     <p><a class="text-light btn" href="{% url 'logout' %}">{{ user.username }} Log out</a></p>
                 {% else %}
                     <div class="btn-sm float-left">
