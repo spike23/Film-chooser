@@ -15,6 +15,7 @@ from .models import FilmsBase, FilmsToWatching
 main_page_template = 'index.html'
 film_list_template = 'film_list.html'
 watching_list_template = 'watching_list.html'
+edit_film_template = 'edit_film.html'
 
 
 def index(request):
@@ -168,3 +169,19 @@ def add_new_film(request):
             'films': film_list
         }
         return render(request, film_list_template, context)
+
+
+@login_required
+def edit_film(request, pk):
+    current_user = request.user.id
+    form = NewFilmForm(request.POST)
+    edited = FilmsBase.objects.get(user_id=current_user, pk=pk)
+    if request.method == 'POST' and form.is_valid():
+        film = form.cleaned_data.get('new_film')
+        edited.films = film
+        edited.save()
+
+    context = {
+        'film': edited
+    }
+    return render(request, edit_film_template, context)
