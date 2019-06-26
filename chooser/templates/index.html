@@ -144,10 +144,7 @@
 
         <footer class="my-5 pt-5 text-light text-center text-small">
 
-
-            <p class="mb-1">&copy; 2019 Nickolay Osiniy</p>
-
-            <div class="btn-sm float-left">
+            <div class="btn-sm">
                 {% if user.is_authenticated %}
                     {#                    <p class="mb-1 btn float-left">{{ user.username }}</p>#}
                     <p><a class="text-light btn" href="{% url 'logout' %}">{{ user.username }} Log out</a></p>
@@ -165,6 +162,8 @@
                     <p><a class="text-light btn" href="{% provider_login_url 'facebook' %}">Log In with Facebook</a></p>
                 {% endif %}
                 </div>
+
+             <p class="mb-1">&copy; 2019 Nickolay Osiniy</p>
             </div>
 
         </footer>
