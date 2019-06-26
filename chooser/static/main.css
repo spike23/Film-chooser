@@ -58,7 +58,9 @@ input[type="file"] {
   border-radius: 5px;
 
 }
-
+.list-group li{
+  cursor:default;
+}
 .form-film-count{
   height: 400px;
     padding: 65px 40px;
@@ -228,4 +230,13 @@ h2.funny-title{
 }
 .pagination li a{
   color: #fff;
+}
+
+/* Style checkbox*/
+.form-check-input {
+  height: 25px;
+  width:25px;
+  top:-2px;
+  left:10px;
+
 }
