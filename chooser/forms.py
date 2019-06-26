@@ -21,5 +21,6 @@ class FilmsForm(forms.Form):
         return films
 
 
-class DeleteFilmsForm(forms.Form):
-    del_films = forms.BooleanField(widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-control'}))
+class NewFilmForm(forms.Form):
+
+    new_film = forms.CharField()  # (label='New film', max_length=100)

@@ -7,8 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.views.generic import CreateView
 
-from .forms import FilmsForm
+from .forms import FilmsForm, NewFilmForm
 from .models import FilmsBase, FilmsToWatching
 
 main_page_template = 'index.html'
@@ -147,3 +148,23 @@ def delete_films_watching(request):
     values = request.POST.getlist('delete')
     FilmsToWatching.objects.filter(pk__in=values, user_id=current_user).delete()
     return redirect('watching_film_list')
+
+
+@login_required
+def add_new_film(request):
+    current_user = request.user.id
+    form = NewFilmForm(request.POST)
+    films = FilmsBase.objects.filter(user_id=current_user).order_by('films')
+    paginator = Paginator(films, 7)
+    page = request.GET.get('page')
+    film_list = paginator.get_page(page)
+    if request.method == 'POST' and form.is_valid():
+        film = form.cleaned_data.get('new_film')
+        new_film = FilmsBase(films=film, user_id=current_user)
+        new_film.save()
+        context = {
+            'form': form,
+            'new_film': film,
+            'films': film_list
+        }
+        return render(request, film_list_template, context)

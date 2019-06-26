@@ -24,6 +24,7 @@ urlpatterns = [
     path('chooser', views.chooser, name='chooser'),
     path('film-list/', views.base_film_list, name='base_film_list'),
     path('watching-list/', views.watching_film_list, name='watching_film_list'),
+    path('add-list-base/', views.add_new_film, name='add_new_film'),
     path('delete-list-base/', views.delete_films_base, name='delete_films_base'),
     path('delete-list-watching/', views.delete_films_watching, name='delete_films_watching'),
     path('upload-csv/', views.base_films_uploader, name='base_films_uploader'),

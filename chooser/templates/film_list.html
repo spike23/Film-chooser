@@ -99,7 +99,16 @@
             </ul>
         {% endif %}
 
+        {% if new_film %}
+            <div class="col-md-6">
+                    <label class="text-light" for="username">{{ new_film }} was added.</label>
+                </div>
+        {% endif %}
 
+        <form action="{% url 'add_new_film' %}" method="post">{% csrf_token %}
+            <input class="float-right" id="new_film" type="text" name="new_film" value="{{ new_film }}" required>
+            <button class="btn btn-sm float-right" type="submit">Add film</button>
+        </form>
 
         <footer class="my-5 pt-5 text-light text-center text-small">
 
