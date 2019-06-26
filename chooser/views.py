@@ -3,9 +3,9 @@ import io
 import random
 from datetime import datetime
 
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from .forms import FilmsForm
@@ -69,11 +69,20 @@ def base_films_uploader(request):
     current_user = request.user.id
     form = FilmsForm(current_user)
     last_list = FilmsToWatching.objects.all().filter(user_id=current_user)
+    updated = FilmsBase.objects.latest('last_updated')
 
-    csv_file = request.FILES['file']
-    if not csv_file.name.endswith('.csv'):
-        messages.error(request, 'This file is not a .csv file')
-    data = csv_file.read().decode('utf-8')
+    text_file = request.FILES['file']
+
+    if not text_file.name.endswith('.csv') and not text_file.name.endswith('.txt'):
+        context = {
+            'form': form,
+            'last_watching': last_list,
+            'last_updated': updated,
+            'error': True
+        }
+        return render(request, main_page_template, context)
+
+    data = text_file.read().decode('utf-8')
     io_string = io.StringIO(data)
     count = 0
     for film in csv.reader(io_string):
@@ -88,6 +97,7 @@ def base_films_uploader(request):
         'form': form,
         'counter': count,
         'last_watching': last_list,
+        'last_updated': updated
     }
 
     return render(request, main_page_template, context)

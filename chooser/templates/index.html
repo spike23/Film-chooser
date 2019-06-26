@@ -117,14 +117,21 @@
 
         <form method="post" action="{% url 'base_films_uploader' %}" enctype="multipart/form-data">{% csrf_token %}
             <h3 class="text-light text-left">Upload your list film:</h3>
-            <input type="file" id="username" name="file">
+            <input type="file" id="username" name="file" data-buttonBefore="true" required>
             <button class="btn btn-sm" type="save">Upload</button>
 
             {% if counter %}
-
-                <label class="text-light" for="username">{{ counter }} uploaded films</label>
-
+                <div class="col-md-6">
+                    <label class="text-light" for="username">{{ counter }} uploaded films</label>
+                </div>
             {% endif %}
+
+            {% if error %}
+                <div class="col-md-6 alert alert-danger">
+                    <strong>Please, load csv or txt file.</strong>
+                </div>
+            {% endif %}
+
         </form>
 
         {% if last_updated %}
