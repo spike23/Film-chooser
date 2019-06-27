@@ -46,18 +46,18 @@
             <h2 class="text-uppercase text-primary font-weight-bold funny-title section-title">Film chooser</h2>
         </div>
 
-        <div class="col-md-4 order-md-2 ">
+        <div class="col-md-12 order-md-2 ">
             <h4 class="d-flex justify-content-center align-items-center">
                 <span class="text-light">Films in base</span>
             </h4>
-            <form class="needs-validation btn-sm col-md-12" action="{% url 'delete_films_base' %}"
+            <form class="needs-validation btn-sm col-md-4 " action="{% url 'delete_films_base' %}"
                   method="post">                        {% csrf_token %}
                 <ul class="list-group">
                     {% if films %}
 
                         {% for film in films %}
 
-                            <li class="list-group-item d-flex justify-content-center lh-condensed">
+                            <li class="list-group-item d-flex lh-condensed">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value={{ film.pk }} name="delete"
                                            id="defaultCheck1">
@@ -75,10 +75,8 @@
                 <button class="btn btn-primary btn-lg btn-block" type="submit">Delete checked</button>
             </form>
 
-        </div>
-
         {% if films.has_other_pages %}
-            <ul class="pagination">
+            <ul class="pagination ">
                 {% if films.has_previous %}
                     <li><a href="?page={{ films.previous_page_number }}">&laquo;</a></li>
                 {% else %}
@@ -105,11 +103,11 @@
                 </div>
         {% endif %}
 
-        <form action="{% url 'add_new_film' %}" method="post">{% csrf_token %}
-            <input class="" id="new_film" type="text" name="new_film" value="{{ new_film }}" required>
-            <button class="btn btn-sm " type="submit">Add film</button>
+        <form class="" action="{% url 'add_new_film' %}" method="post">{% csrf_token %}
+            <input id="new_film" type="text" name="new_film" value="{{ new_film }}" required>
+            <button class="btn btn-sm add-btn" type="submit">Add film</button>
         </form>
-
+        </div>
         <footer class="my-5 pt-5 text-light text-center text-small">
 
             <div class="btn-sm float-bottom">

@@ -47,12 +47,12 @@
             <h2 class="text-uppercase text-primary font-weight-bold funny-title section-title">Film chooser</h2>
         </div>
 
-        <div class="col-md-4 order-md-2 ">
+        <div class="col-md-12">
             <h4 class="d-flex justify-content-center align-items-center">
                 <span class="text-light">Films to watching</span>
             </h4>
 
-            <form class="needs-validation btn-sm col-md-12" action="{% url 'delete_films_watching' %}"
+            <form class="needs-validation btn-sm col-md-4 watching-form" action="{% url 'delete_films_watching' %}"
                   method="post">                        {% csrf_token %}
                 <ul class="list-group">
                     {% if films %}
