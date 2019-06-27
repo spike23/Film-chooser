@@ -36,8 +36,9 @@
 
 
             <div class="btn-sm float-right">
-                <a href='{% url "watching_film_list" %}' class="text-light text-center btn btn-white">WatchingFilms </a>
-                <a href='{% url "base_film_list" %}' class="text-light text-center btn btn-white"> FilmBase</a>
+                <a href='{% url "base_film_list" %}' class="text-light text-center btn"> FilmBase</a>
+
+                <a href='{% url "watching_film_list" %}' class="text-light text-center btn">WatchingFilms </a>
             </div>
         </div>
     </div>
@@ -47,6 +48,60 @@
             <h2 class="text-uppercase text-primary font-weight-bold funny-title section-title">Film chooser</h2>
         </div>
 
+        <div class="col-md-4 order-md-2 ">
+            <h4 class="d-flex justify-content-center align-items-center">
+                <span class="text-light">Films in base</span>
+            </h4>
+            <form class="needs-validation btn-sm col-md-12" action="{% url 'delete_films_base' %}"
+                  method="post">                        {% csrf_token %}
+                <ul class="list-group">
+                    {% if films %}
+
+                        {% for film in films %}
+
+                            <li class="list-group-item d-flex justify-content-center lh-condensed">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value={{ film.pk }} name="delete"
+                                           id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        <a href="{% url 'edit_film' film.pk %}"><h6
+                                                class="my-0 text-light"> {{ film.films }} </h6></a>
+                                    </label>
+                                </div>
+                            </li>
+                        {% endfor %}
+
+                    {% endif %}
+
+                </ul>
+
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Delete checked</button>
+            </form>
+
+        </div>
+
+        {% if films.has_other_pages %}
+            <ul class="pagination">
+                {% if films.has_previous %}
+                    <li><a href="?page={{ films.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+                {% for i in films.paginator.page_range %}
+                    {% if films.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if films.has_next %}
+                    <li><a href="?page={{ films.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+
         <h3 class="text-light text-left">Edit film</h3>
         <form action="" method="post">{% csrf_token %}
             <input class="float-right" id="new_film" type="text" name="new_film" value="{{ film.films }}" required>
@@ -54,8 +109,6 @@
         </form>
 
         <footer class="my-5 pt-5 text-light text-center text-small">
-
-            <p class="mb-1">&copy; 2019 Nickolay Osiniy</p>
 
             <div class="btn-sm float-bottom">
                 {% if user.is_authenticated %}
@@ -75,6 +128,10 @@
                     <p><a class="text-light btn" href="{% provider_login_url 'facebook' %}">Log In with Facebook</a></p>
                 {% endif %}
                 </div>
+
+
+                <p class="mb-1">&copy; 2019 Nickolay Osiniy</p>
+
             </div>
 
         </footer>

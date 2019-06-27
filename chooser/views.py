@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views.generic import CreateView
 
 from .forms import FilmsForm, NewFilmForm
@@ -116,7 +117,7 @@ def base_film_list(request):
     context = {
         'films': film_list
     }
-    
+
     return render(request, film_list_template, context)
 
 
@@ -176,12 +177,20 @@ def edit_film(request, pk):
     current_user = request.user.id
     form = NewFilmForm(request.POST)
     edited = FilmsBase.objects.get(user_id=current_user, pk=pk)
+
+    films = FilmsBase.objects.filter(user_id=current_user).order_by('films')
+    paginator = Paginator(films, 7)
+    page = request.GET.get('page')
+    film_list = paginator.get_page(page)
+
     if request.method == 'POST' and form.is_valid():
         film = form.cleaned_data.get('new_film')
         edited.films = film
         edited.save()
 
     context = {
-        'film': edited
+        'film': edited,
+        'films': film_list
     }
+
     return render(request, edit_film_template, context)
