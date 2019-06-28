@@ -1,7 +1,12 @@
+import sys
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
-quote_page = 'http://www.kinofilms.ua/afisha/ukr_premieres/?month=05&year=2019'
+
+month = int(sys.argv[1])
+year = int(sys.argv[2])
+
+quote_page = 'http://www.kinofilms.ua/afisha/ukr_premieres/?month={month}&year={year}'.format(month=month, year=year)
 
 page = urlopen(quote_page)
 
