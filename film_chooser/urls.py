@@ -21,6 +21,7 @@ from chooser import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('test/', views.test_view, name='test_view'),
 
     path('chooser/', include('chooser.urls')),
     path('films/', include('films.urls')),

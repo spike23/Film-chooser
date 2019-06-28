@@ -98,3 +98,7 @@ def base_films_uploader(request):
     }
 
     return render(request, main_page_template, context)
+
+
+def test_view(request):
+    return render(request, 'test.html')
