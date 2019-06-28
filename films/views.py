@@ -66,14 +66,14 @@ def add_new_film(request):
     film_list = paginator.get_page(page)
     if request.method == 'POST' and form.is_valid():
         film = form.cleaned_data.get('new_film')
-        new_film = FilmsBase(films=film, user_id=current_user)
-        new_film.validate_unique()
-        new_film.save()
+        FilmsBase.objects.update_or_create(films=film, user_id=current_user)
+
         context = {
             'form': form,
             'new_film': film,
             'films': film_list
         }
+
         return render(request, film_list_template, context)
 
 
