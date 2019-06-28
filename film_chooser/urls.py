@@ -1,13 +1,13 @@
 """film_chooser URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
+The `urlpatterns` list routes URLs to chooser_views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
 Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
+Function chooser_views
+    1. Add an import:  from my_app import chooser_views
+    2. Add a URL to urlpatterns:  path('', chooser_views.home, name='home')
+Class-based chooser_views
+    1. Add an import:  from other_app.chooser_views import Home
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
@@ -21,14 +21,10 @@ from chooser import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('chooser', views.chooser, name='chooser'),
-    path('film-list/', views.base_film_list, name='base_film_list'),
-    path('watching-list/', views.watching_film_list, name='watching_film_list'),
-    path('add-list-base/', views.add_new_film, name='add_new_film'),
-    path('edit-film/<int:pk>/', views.edit_film, name='edit_film'),
-    path('delete-list-base/', views.delete_films_base, name='delete_films_base'),
-    path('delete-list-watching/', views.delete_films_watching, name='delete_films_watching'),
-    path('upload-csv/', views.base_films_uploader, name='base_films_uploader'),
+
+    path('chooser/', include('chooser.urls')),
+    path('films/', include('films.urls')),
+
     path('users/', include('users.urls')),
     path('users/', include('django.contrib.auth.urls')),
     path('accounts/', include('allauth.urls'))

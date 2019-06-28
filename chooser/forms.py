@@ -23,4 +23,5 @@ class FilmsForm(forms.Form):
 
 class NewFilmForm(forms.Form):
 
-    new_film = forms.CharField()  # (label='New film', max_length=100)
+    new_film = forms.CharField()
+
