@@ -11,6 +11,7 @@ from .forms import FilmsForm
 from .models import FilmsBase, FilmsToWatching
 
 main_page_template = 'index.html'
+about_site_template = 'about_site.html'
 
 
 def index(request):
@@ -98,6 +99,10 @@ def base_films_uploader(request):
     }
 
     return render(request, main_page_template, context)
+
+
+def about_site(request):
+    return render(request, about_site_template)
 
 
 def test_view(request):
