@@ -13,5 +13,7 @@ page = urlopen(quote_page)
 soup = BeautifulSoup(page, 'html.parser')
 
 name_box = soup.findAll('a', attrs={'class': 'o'})
+
 for film in name_box:
     print(film.text.strip())
+    print('http://www.kinofilms.ua' + film.get('href'))
