@@ -1,10 +1,12 @@
 
  body{
    background-color: #000407;
+   min-height:100vh;
  }
 .view {
   position: relative;
   height: 100%;
+  min-height: 920px;
 }
 
 .shadow-box{
@@ -28,7 +30,7 @@
 }
 .main-menu.scrolled {
   background-color: rgba(0,0,0,0.8)!important;
-  transition: background-color 200ms linear;
+  transition: background-color 100ms linear;
   box-shadow: 0 2px 5px 0 rgba(255,255,255,.16), 0 2px 10px 0 rgba(255,255,255,.12);
 }
 .z-box{
