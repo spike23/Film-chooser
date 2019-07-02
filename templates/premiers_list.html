@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'main.css' %}"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+          integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script>
         $(function () {
@@ -49,69 +53,8 @@
             <h2 class="text-uppercase text-primary font-weight-bold funny-title section-title">Film chooser</h2>
         </div>
 
-        <div class="col-md-12 order-md-2 ">
-            <h4 class="d-flex justify-content-center align-items-center">
-                <span class="text-light">Films in base</span>
-            </h4>
-            <form class="needs-validation btn-sm col-md-4 " action="{% url 'delete_films_base' %}"
-                  method="post">                        {% csrf_token %}
-                <ul class="list-group">
-                    {% if films %}
 
-                        {% for film in films %}
 
-                            <li class="list-group-item d-flex lh-condensed">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value={{ film.pk }} name="delete"
-                                           id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        <a href="{% url 'edit_film' film.pk %}"><h6
-                                                class="my-0 text-light"> {{ film.films }} </h6></a>
-                                    </label>
-                                </div>
-                            </li>
-                        {% endfor %}
-
-                    {% endif %}
-
-                </ul>
-
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Delete checked</button>
-            </form>
-
-            {% if films.has_other_pages %}
-                <ul class="pagination ">
-                    {% if films.has_previous %}
-                        <li><a href="?page={{ films.previous_page_number }}">&laquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&laquo;</span></li>
-                    {% endif %}
-                    {% for i in films.paginator.page_range %}
-                        {% if films.number == i %}
-                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                        {% else %}
-                            <li><a href="?page={{ i }}">{{ i }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    {% if films.has_next %}
-                        <li><a href="?page={{ films.next_page_number }}">&raquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&raquo;</span></li>
-                    {% endif %}
-                </ul>
-            {% endif %}
-
-            {% if new_film %}
-                <div class="col-md-6">
-                    <label class="text-light" for="username">{{ new_film }} was added.</label>
-                </div>
-            {% endif %}
-
-            <form class="" action="{% url 'add_new_film' %}" method="post">{% csrf_token %}
-                <input id="new_film" type="text" name="new_film" value="{{ new_film }}" required>
-                <button class="btn btn-sm add-btn" type="submit">Add film</button>
-            </form>
-        </div>
         <footer class="my-5 pt-5 text-light text-center text-small">
 
             <div class="btn-sm float-bottom">

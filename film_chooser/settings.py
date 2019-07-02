@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
 
     'chooser',
-    'users'
+    'users',
+    'films',
+    'premieres'
 ]
 
 
