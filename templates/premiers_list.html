@@ -79,9 +79,8 @@
             </ul>
 
             <button class="btn btn-primary btn-lg btn-block" type="submit">Saved checked</button>
-        </form>
 
-    {% if premiers.has_other_pages %}
+            {% if premiers.has_other_pages %}
                 <ul class="pagination ">
                     {% if premiers.has_previous %}
                         <li><a href="?page={{ premiers.previous_page_number }}">&laquo;</a></li>
@@ -102,6 +101,9 @@
                     {% endif %}
                 </ul>
             {% endif %}
+        </form>
+
+
 
 
         <footer class="my-5 pt-5 text-light text-center text-small">
