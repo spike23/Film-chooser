@@ -54,42 +54,54 @@
         </div>
 
 
-        <form class="needs-validation form-film-count col-md-8" action="{% url 'premiers_collector' %}" method="post">
-            {% csrf_token %}
-            <div class="">
-                <label class="text-light text-center" for="username">Please select the month and year for which you want
-                    to get a list of premieres</label>
-                <div class="input-group rounded">
-                    {% if form.errors %}
-                        {% for field in form %}
-                            {% for error in field.errors %}
-                                <div class="alert alert-danger">
-                                    <strong>{{ error|escape }}</strong>
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
-                    {% endif %}
-                    {{ form.month }}
-                </div>
+        <form class="needs-validation btn-sm col-md-4 " action="{% url 'save_films_base' %}"
+              method="post">                        {% csrf_token %}
+            <ul class="list-group">
+                {% if premiers %}
 
-            <div class="input-group rounded">
-                    {% if form.errors %}
-                        {% for field in form %}
-                            {% for error in field.errors %}
-                                <div class="alert alert-danger">
-                                    <strong>{{ error|escape }}</strong>
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
-                    {% endif %}
-                    {{ form.year }}
-                </div>
-            </div>
+                    {% for film in premiers %}
 
+                        <li class="list-group-item d-flex lh-condensed">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value={{ film }} name="save"
+                                       id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+{#                                    <a href="{% url 'index' film %}"><h6#}
+{#                                            class="my-0 text-light"> {{ film }} </h6></a>#}
+                                    <a href="{{ movie_page }}"> <p class="my-0 text-light"> {{ film }} </p></a>
+                                </label>
+                            </div>
+                        </li>
+                    {% endfor %}
 
-            <hr class="mb-4">
-            <button class="btn btn-lg btn-block" type="submit">Get premiers list</button>
+                {% endif %}
+
+            </ul>
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Saved checked</button>
         </form>
+
+    {% if premiers.has_other_pages %}
+                <ul class="pagination ">
+                    {% if premiers.has_previous %}
+                        <li><a href="?page={{ premiers.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in premiers.paginator.page_range %}
+                        {% if premiers.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if premiers.has_next %}
+                        <li><a href="?page={{ premiers.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
 
 
         <footer class="my-5 pt-5 text-light text-center text-small">
