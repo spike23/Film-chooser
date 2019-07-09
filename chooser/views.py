@@ -45,8 +45,8 @@ def chooser(request):
         for film in result:
             film_watch = FilmsToWatching(films=film, user_id=current_user)
             film_watch.save()
-            base_film = FilmsBase.objects.filter(films=film, user_id=current_user)
-            base_film.delete()
+            # base_film = FilmsBase.objects.filter(films=film, user_id=current_user)
+            # base_film.delete()
 
         return redirect('watching_film_list')
 
