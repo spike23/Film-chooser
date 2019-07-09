@@ -1,14 +1,16 @@
 from urllib.request import urlopen
 
 from bs4 import BeautifulSoup
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
+from chooser.models import FilmsBase
+from .forms import PremiersPeriodForm
 from .models import PremierList
-from premieres.forms import PremiersPeriodForm
 
 premiers_template = 'premiers_list.html'
+save_premiers_template = 'save_premiers.html'
 
 
 def premiers_scrapper(request):
@@ -20,6 +22,7 @@ def premiers_scrapper(request):
     return render(request, premiers_template, context)
 
 
+@login_required
 def premiers_collector(request):
     current_user = request.user.id
     form = PremiersPeriodForm(request.POST)
@@ -37,13 +40,29 @@ def premiers_collector(request):
             title = film.text.strip()
             link = 'http://www.kinofilms.ua' + film.get('href')
             PremierList(films=title, links=link, user_id=current_user).save()
-        return redirect('index')
+        return redirect('premiers_shower')
 
 
+@login_required
+def premiers_shower(request):
+    current_user = request.user.id
+    films = PremierList.objects.filter(user_id=current_user).order_by('films')
+    paginator = Paginator(films, 10)
+    page = request.GET.get('page')
+    film_list = paginator.get_page(page)
+
+    context = {
+        'premiers': film_list,
+    }
+
+    return render(request, save_premiers_template, context)
+
+
+@login_required
 def save_films_base(request):
     current_user = request.user.id
     values = request.POST.getlist('save')
-    # FilmsBase.objects.filter(pk__in=values, user_id=current_user).save()
-    # FilmsBase.objects.update_or_create(films=film, user_id=current_user)
-    # return redirect('premiers_scrapper')
-    return HttpResponse('{}'.format(values))
+    films = PremierList.objects.filter(pk__in=values, user_id=current_user).values('films')
+    for film in films:
+        FilmsBase.objects.update_or_create(films=film.get('films'), user_id=current_user)
+    return redirect('base_film_list')

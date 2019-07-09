@@ -40,7 +40,6 @@
                 <a href='{% url "base_film_list" %}' class="text-light text-center btn btn-white"> FilmBase</a>
                 <a href='{% url "about_site" %}' class="text-light text-center btn btn-white">About site </a>
             </div>
-
         </div>
     </div>
     <div class="container z-box">
@@ -77,7 +76,7 @@
                 </ul>
 
                 <button class="btn btn-primary btn-lg btn-block" type="submit">Delete checked</button>
-
+            </form>
 
             {% if films.has_other_pages %}
                 <ul class="pagination ">
@@ -111,8 +110,6 @@
                 <input id="new_film" type="text" name="new_film" value="{{ new_film }}" required>
                 <button class="btn btn-sm add-btn" type="submit">Add film</button>
             </form>
-            </form>
-
         </div>
         <footer class="my-5 pt-5 text-light text-center text-small">
 
