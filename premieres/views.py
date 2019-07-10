@@ -65,4 +65,9 @@ def save_films_base(request):
     films = PremierList.objects.filter(pk__in=values, user_id=current_user).values('films')
     for film in films:
         FilmsBase.objects.update_or_create(films=film.get('films'), user_id=current_user)
+
+    saved_films = [film.get('films') for film in films]
+
+    request.session['saved_films'] = saved_films
+
     return redirect('base_film_list')

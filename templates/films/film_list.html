@@ -64,6 +64,14 @@
             <input id="new_film" type="text" name="new_film" value="{{ new_film }}" required>
             <button class="btn btn-sm add-btn" type="submit">Add film</button>
         </form>
+
+        {% if saved_films %}
+            {% for film in saved_films %}
+                <div class="col-md-6">
+                    <label class="text-light" for="username">{{ film }} was saved.</label>
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
 
 {% endblock %}

@@ -18,9 +18,15 @@ def base_film_list(request):
     page = request.GET.get('page')
     film_list = paginator.get_page(page)
 
+    saved_films_premieres = request.session.get('saved_films')
+
     context = {
-        'films': film_list
+        'films': film_list,
+        'saved_films': saved_films_premieres
     }
+
+    if request.session.get('saved_films'):
+        del request.session['saved_films']
 
     return render(request, film_list_template, context)
 
