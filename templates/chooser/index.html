@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block index %}
+
+    <div class="row">
+        <div class="col-md-4 order-md-2 watch-box">
+            <h4 class="d-flex justify-content-center align-items-center">
+                <span class="text-light">Last watching</span>
+            </h4>
+            <ul class="list-group">
+                {% if last_watching %}
+                    {% for film in last_watching %}
+                        <li class="list-group-item d-flex justify-content-center lh-condensed">
+                            <h6 class="my-0 text-light"> {{ film.films }} </h6>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+            {% if last_watching.has_other_pages %}
+                <ul class="pagination">
+                    {% if last_watching.has_previous %}
+                        <li><a href="?page={{ last_watching.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in last_watching.paginator.page_range %}
+                        {% if last_watching.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if last_watching.has_next %}
+                        <li><a href="?page={{ last_watching.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <div class="col-md-8 order-md-1 ">
+
+            <form class="needs-validation form-film-count col-md-8" action="{% url 'chooser' %}" method="post">
+                {% csrf_token %}
+                <div class="">
+                    <label class="text-light text-center" for="username">How many films will you watch ?</label>
+                    <div class="input-group rounded">
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+                        {{ form.films }}
+                    </div>
+                </div>
+
+
+                <hr class="mb-4">
+                <button class="btn btn-lg btn-block" type="submit">Show the result</button>
+            </form>
+
+        </div>
+    </div>
+
+    <hr class="mb-4">
+
+
+    <form method="post" action="{% url 'base_films_uploader' %}" enctype="multipart/form-data">{% csrf_token %}
+        <h3 class="text-light text-left">Upload your list film:</h3>
+        <input type="file" id="username" name="file" data-buttonBefore="true" required>
+        <button class="btn btn-sm" type="save">Upload</button>
+
+        {% if counter %}
+            <div class="col-md-6">
+                <label class="text-light" for="username">{{ counter }} uploaded films</label>
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <div class="col-md-6 alert alert-danger">
+                <strong>Please, load csv or txt file.</strong>
+            </div>
+        {% endif %}
+
+    </form>
+
+    {% if last_updated %}
+
+        <div class="last-upload btn-sm">
+            <p class="mb-1">Last film list updating was: {{ last_updated.last_updated }}</p>
+        </div>
+    {% endif %}
+
+{% endblock %}

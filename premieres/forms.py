@@ -6,7 +6,7 @@ def current_year_validation():
     return datetime.now().year
 
 
-class PremiersPeriodForm(forms.Form):
+class PremieresPeriodForm(forms.Form):
 
     month = forms.IntegerField(
         widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'month for scrapping premiers'}),

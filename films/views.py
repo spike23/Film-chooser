@@ -5,9 +5,9 @@ from django.shortcuts import render, redirect
 from chooser.forms import NewFilmForm
 from chooser.models import FilmsBase, FilmsToWatching
 
-film_list_template = 'film_list.html'
-watching_list_template = 'watching_list.html'
-edit_film_template = 'edit_film.html'
+film_list_template = 'films/film_list.html'
+watching_list_template = 'films/watching_list.html'
+edit_film_template = 'films/edit_film.html'
 
 
 @login_required

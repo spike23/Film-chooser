@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block watching_list %}
+
+    <div class="col-md-12">
+        <h4 class="d-flex justify-content-center align-items-center">
+            <span class="text-light">Films to watching</span>
+        </h4>
+
+        <form class="needs-validation btn-sm col-md-4 watching-form" action="{% url 'delete_films_watching' %}"
+              method="post">                        {% csrf_token %}
+            <ul class="list-group">
+                {% if films %}
+
+                    {% for film in films %}
+
+                        <li class="list-group-item d-flex text-left lh-condensed">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value={{ film.pk }} name="delete"
+                                       id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    <h6 class="my-0 text-light"> {{ film.films }} </h6>
+                                </label>
+                            </div>
+                        </li>
+                    {% endfor %}
+
+                {% endif %}
+
+            </ul>
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Delete checked</button>
+
+            {% if films.has_other_pages %}
+                <ul class="pagination">
+                    {% if films.has_previous %}
+                        <li><a href="?page={{ films.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in films.paginator.page_range %}
+                        {% if films.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if films.has_next %}
+                        <li><a href="?page={{ films.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+
+
+        </form>
+
+
+    </div>
+
+{% endblock %}
