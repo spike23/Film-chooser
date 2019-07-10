@@ -39,7 +39,7 @@
             </div>
 
             <div class="btn-sm float-right">
-                <a href='{% url "premiers_scrapper" %}' class="text-light text-center btn btn-white">Premiers </a>
+                <a href='{% url "premieres_scrapper" %}' class="text-light text-center btn btn-white">Premieres </a>
                 <a href='{% url "watching_film_list" %}' class="text-light text-center btn btn-white">WatchingFilms </a>
                 <a href='{% url "base_film_list" %}' class="text-light text-center btn btn-white"> FilmBase</a>
                 <a href='{% url "about_site" %}' class="text-light text-center btn btn-white">About site </a>
@@ -53,54 +53,32 @@
             <h2 class="text-uppercase text-primary font-weight-bold funny-title section-title">Film chooser</h2>
         </div>
 
+        {% block about_site %}
+        {% endblock %}
 
-        <form class="needs-validation btn-sm col-md-4 " action="{% url 'save_films_base' %}"
-              method="post">                        {% csrf_token %}
-            <ul class="list-group">
-                {% if premiers %}
+        {% block signup %}
+        {% endblock %}
 
-                    {% for film in premiers %}
+        {% block login %}
+        {% endblock %}
 
-                        <li class="list-group-item d-flex lh-condensed">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value={{ film.pk }} name="save"
-                                       id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    <a href="{{ film.links }}"> <p class="my-0 text-light"> {{ film.films }} </p></a>
-                                </label>
-                            </div>
-                        </li>
-                    {% endfor %}
+        {% block watching_list %}
+        {% endblock %}
 
-                {% endif %}
+        {% block save_premieres %}
+        {% endblock %}
 
-            </ul>
+        {% block premieres_list %}
+        {% endblock %}
 
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Saved checked</button>
-        </form>
+        {% block index %}
+        {% endblock %}
 
-    {% if premiers.has_other_pages %}
-                <ul class="pagination ">
-                    {% if premiers.has_previous %}
-                        <li><a href="?page={{ premiers.previous_page_number }}">&laquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&laquo;</span></li>
-                    {% endif %}
-                    {% for i in premiers.paginator.page_range %}
-                        {% if premiers.number == i %}
-                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                        {% else %}
-                            <li><a href="?page={{ i }}">{{ i }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    {% if premiers.has_next %}
-                        <li><a href="?page={{ premiers.next_page_number }}">&raquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&raquo;</span></li>
-                    {% endif %}
-                </ul>
-            {% endif %}
+        {% block film_list %}
+        {% endblock %}
 
+        {% block edit_film %}
+        {% endblock %}
 
         <footer class="my-5 pt-5 text-light text-center text-small">
 

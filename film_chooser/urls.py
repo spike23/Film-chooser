@@ -21,11 +21,10 @@ from chooser import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('test/', views.test_view, name='test_view'),
 
     path('chooser/', include('chooser.urls')),
     path('films/', include('films.urls')),
-    path('premiers/', include('premieres.urls')),
+    path('premieres/', include('premieres.urls')),
 
     path('users/', include('users.urls')),
     path('users/', include('django.contrib.auth.urls')),

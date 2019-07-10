@@ -6,26 +6,26 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 
 from chooser.models import FilmsBase
-from .forms import PremiersPeriodForm
+from .forms import PremieresPeriodForm
 from .models import PremierList
 
-premiers_template = 'premiers_list.html'
-save_premiers_template = 'save_premiers.html'
+premieres_template = 'premieres/premieres_list.html'
+save_premieres_template = 'premieres/save_premieres.html'
 
 
-def premiers_scrapper(request):
-    form = PremiersPeriodForm()
+def premieres_scrapper(request):
+    form = PremieresPeriodForm()
     context = {
         'form': form
     }
 
-    return render(request, premiers_template, context)
+    return render(request, premieres_template, context)
 
 
 @login_required
-def premiers_collector(request):
+def premieres_collector(request):
     current_user = request.user.id
-    form = PremiersPeriodForm(request.POST)
+    form = PremieresPeriodForm(request.POST)
     if request.method == 'POST' and form.is_valid():
         PremierList.objects.all().filter(user_id=current_user).delete()
         month = form.cleaned_data.get('month')
@@ -40,11 +40,11 @@ def premiers_collector(request):
             title = film.text.strip()
             link = 'http://www.kinofilms.ua' + film.get('href')
             PremierList(films=title, links=link, user_id=current_user).save()
-        return redirect('premiers_shower')
+        return redirect('premieres_shower')
 
 
 @login_required
-def premiers_shower(request):
+def premieres_shower(request):
     current_user = request.user.id
     films = PremierList.objects.filter(user_id=current_user).order_by('films')
     paginator = Paginator(films, 10)
@@ -52,10 +52,10 @@ def premiers_shower(request):
     film_list = paginator.get_page(page)
 
     context = {
-        'premiers': film_list,
+        'premieres': film_list,
     }
 
-    return render(request, save_premiers_template, context)
+    return render(request, save_premieres_template, context)
 
 
 @login_required

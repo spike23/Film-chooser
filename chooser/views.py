@@ -10,8 +10,8 @@ from django.shortcuts import render, redirect
 from .forms import FilmsForm
 from .models import FilmsBase, FilmsToWatching
 
-main_page_template = 'index.html'
-about_site_template = 'about_site.html'
+main_page_template = 'chooser/index.html'
+about_site_template = 'chooser/about_site.html'
 
 
 def index(request):
@@ -103,7 +103,3 @@ def base_films_uploader(request):
 
 def about_site(request):
     return render(request, about_site_template)
-
-
-def test_view(request):
-    return render(request, 'test.html')

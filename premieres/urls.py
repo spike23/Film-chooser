@@ -3,8 +3,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('premiers-list/', views.premiers_scrapper, name='premiers_scrapper'),
-    path('get-premier-list', views.premiers_collector, name='premiers_collector'),
-    path('save-premiers', views.save_films_base, name='save_films_base'),
-    path('show-premier-list', views.premiers_shower, name='premiers_shower')
+    path('premieres-list/', views.premieres_scrapper, name='premieres_scrapper'),
+    path('get-premier-list', views.premieres_collector, name='premieres_collector'),
+    path('save-premieres', views.save_films_base, name='save_films_base'),
+    path('show-premier-list', views.premieres_shower, name='premieres_shower')
 ]
