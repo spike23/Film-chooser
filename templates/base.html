@@ -62,6 +62,7 @@
         {% block login %}
         {% endblock %}
 
+
         {% block reset_form %}
         {% endblock %}
 
@@ -72,6 +73,9 @@
         {% endblock %}
 
         {% block reset_complete %}
+        {% endblock %}
+
+        {% block change_password %}
         {% endblock %}
 
         {% block watching_list %}
@@ -96,8 +100,10 @@
 
             <div class="btn-sm float-bottom">
                 {% if user.is_authenticated %}
-                    {#                    <p class="mb-1 btn float-left">{{ user.username }}</p>#}
                     <p><a class="text-light btn" href="{% url 'logout' %}">{{ user.username }} Log out</a></p>
+                    </div>
+                    <div class="btn-sm float-bottom">
+                    <p><a class="text-light btn" href="{% url 'change_password' %}">Change password</a></p>
                 {% else %}
                     <div class="btn-sm float-bottom">
                         <p><a class="text-light btn" href="{% url 'signup' %}">Sign Up</a></p>
@@ -116,7 +122,7 @@
 
                 <p class="mb-1">&copy; 2019 Nickolay Osiniy</p>
 
-            </div>
+                </div>
 
         </footer>
     </div>
