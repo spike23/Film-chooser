@@ -71,7 +71,7 @@
 
 
     <form method="post" action="{% url 'base_films_uploader' %}" enctype="multipart/form-data">{% csrf_token %}
-        <h3 class="text-light text-left">Upload your list film:</h3>
+        <h3 class="text-light text-left">Upload your film list:</h3>
         <input type="file" id="username" name="file" data-buttonBefore="true" required>
         <button class="btn btn-sm" type="save">Upload</button>
 
