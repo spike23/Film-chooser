@@ -3,7 +3,9 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 
 from chooser.models import FilmsBase
 from .forms import PremieresPeriodForm
@@ -71,3 +73,16 @@ def save_films_base(request):
     request.session['saved_films'] = saved_films
 
     return redirect('base_film_list')
+
+
+class SearchPremieresView(ListView):
+    model = PremierList
+    template_name = 'films/search_film_filter.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = PremierList.objects.filter(
+            Q(films__icontains=query)
+        )
+
+        return object_list
