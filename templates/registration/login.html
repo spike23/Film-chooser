@@ -3,16 +3,16 @@
 {% block login %}
 
     <div class="row">
-        <div class="col-md-4 order-md-2 watch-box">
+        <div class="col-md-4 order-md-2 login-box">
 
             <h2>Login</h2>
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Login</button>
+                <button class="btn btn-white float-left" type="submit">Login</button>
             </form>
-            <div class="btn-sm float-bottom">
-                <p><a class="text-light btn" href="{% url 'password_reset' %}">Email password reset</a></p>
+            <div class="float-right ps-reset">
+                <a class="text-light" href="{% url 'password_reset' %}">Email password reset</a>
             </div>
         </div>
     </div>
