@@ -6,6 +6,16 @@
         <h4 class="d-flex justify-content-center align-items-center">
             <span class="text-light">Films</span>
         </h4>
+
+        <div class="float-right">
+            <p class="text-light text-left">Search film in your film list</p>
+            <form class="" action="{% url 'search_film_base_results' %}" method="get">
+                <input name="q" type="text" placeholder="Search film">
+                <button class="btn btn-sm add-btn" type="submit">Search</button>
+            </form>
+        </div>
+
+
         <form class="needs-validation btn-sm col-md-4 " action="{% url 'delete_films_base' %}"
               method="post">                        {% csrf_token %}
             <ul class="list-group">

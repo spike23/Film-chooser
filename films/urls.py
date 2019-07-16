@@ -1,5 +1,6 @@
 from django.urls import path
 
+from films.views import SearchFilmsBaseView
 from . import views
 
 urlpatterns = [
@@ -9,4 +10,5 @@ urlpatterns = [
     path('edit-film/<int:pk>/', views.edit_film, name='edit_film'),
     path('delete-list-base/', views.delete_films_base, name='delete_films_base'),
     path('delete-list-watching/', views.delete_films_watching, name='delete_films_watching'),
+    path('film-list-search/', SearchFilmsBaseView.as_view(), name='search_film_base_results')
 ]

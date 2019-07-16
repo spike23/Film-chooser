@@ -1,6 +1,10 @@
+from itertools import chain
+
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 
 from chooser.forms import NewFilmForm
 from chooser.models import FilmsBase, FilmsToWatching
@@ -105,3 +109,16 @@ def edit_film(request, pk):
     }
 
     return render(request, edit_film_template, context)
+
+
+class SearchFilmsBaseView(ListView):
+    model = FilmsBase
+    template_name = 'films/search_film_filter.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = FilmsBase.objects.filter(
+            Q(films__icontains=query)
+        )
+
+        return object_list
