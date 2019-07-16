@@ -2,12 +2,12 @@
 
 {% block premieres_list %}
 
-    <form class="needs-validation form-film-count col-md-8" action="{% url 'premieres_collector' %}" method="post">
+    <form class="needs-validation form-film-count col-md-6 d-flef premier-box" action="{% url 'premieres_collector' %}" method="post">
         {% csrf_token %}
         <div class="">
             <label class="text-light text-center" for="username">Please select the month and year for which you want
                 to get a list of premieres</label>
-            <div class="input-group rounded">
+            <div class="rounded">
                 {% if form.errors %}
                     {% for field in form %}
                         {% for error in field.errors %}
@@ -20,7 +20,7 @@
                 {{ form.month }}
             </div>
 
-            <div class="input-group rounded">
+            <div class="rounded">
                 {% if form.errors %}
                     {% for field in form %}
                         {% for error in field.errors %}
