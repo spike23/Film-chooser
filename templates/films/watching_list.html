@@ -7,6 +7,14 @@
             <span class="text-light">Films to watching</span>
         </h4>
 
+        <div class="float-right">
+            <p class="text-light text-left">Search film in your film list</p>
+            <form class="" action="{% url 'search_film_watching_results' %}" method="get">
+                <input name="q" type="text" placeholder="Search film">
+                <button class="btn btn-sm add-btn" type="submit">Search</button>
+            </form>
+        </div>
+
         <form class="needs-validation btn-sm col-md-4 watching-form" action="{% url 'delete_films_watching' %}"
               method="post">                        {% csrf_token %}
             <ul class="list-group">

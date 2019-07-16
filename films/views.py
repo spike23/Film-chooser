@@ -122,3 +122,16 @@ class SearchFilmsBaseView(ListView):
         )
 
         return object_list
+
+
+class SearchFilmsWatchingView(ListView):
+    model = FilmsToWatching
+    template_name = 'films/search_film_filter.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = FilmsToWatching.objects.filter(
+            Q(films__icontains=query)
+        )
+
+        return object_list
