@@ -96,4 +96,14 @@
         </div>
     {% endif %}
 
+    <div class="float-right">
+        <p class="text-light text-left">Search film</p>
+        <form class="" action="{% url 'search_results' %}" method="get">
+            <input type="text" name="q" data-toggle="popover" data-placement="bottom"
+                   data-content="Press enter to search" class="form-control cfe-nav mt-0 py-3" placeholder="Search..."
+                   value="" style="" data-original-title="" title="" autofocus="autofocus">
+            <button class="btn btn-sm add-btn" type="submit">Search</button>
+        </form>
+    </div>
+
 {% endblock %}

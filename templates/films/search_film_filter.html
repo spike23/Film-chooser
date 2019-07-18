@@ -1,13 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'films/searching.html' %}
 
-{% block search %}
+{% block search_film %}
 
-    <ul>
-        {% for film in object_list %}
-            <li class="list-group-item d-flex lh-condensed">
-                {{ film.films }}
-            </li>
-        {% endfor %}
-    </ul>
-
+    {{ film.films }}
 {% endblock %}

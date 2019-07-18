@@ -10,6 +10,10 @@ class FilmsBase(models.Model):
     def __str__(self):
         return '{films}, {last_updated}'.format(films=self.films, last_updated=self.last_updated)
 
+    @staticmethod
+    def class_name():
+        return "list of films"
+
 
 class FilmsToWatching(models.Model):
     films = models.CharField(max_length=100)
@@ -17,3 +21,7 @@ class FilmsToWatching(models.Model):
 
     def __str__(self):
         return '{films}'.format(films=self.films)
+
+    @staticmethod
+    def class_name():
+        return "list of films to watching"

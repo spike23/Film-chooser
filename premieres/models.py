@@ -10,3 +10,7 @@ class PremierList(models.Model):
 
     def __str__(self):
         return '{films}, {links}'.format(films=self.films, links=self.links)
+
+    @staticmethod
+    def class_name():
+        return "list of premieres"

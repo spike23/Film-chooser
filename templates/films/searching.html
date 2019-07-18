@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block search %}
+
+    <ul>
+        {% for film in object_list %}
+            <li class="list-group-item d-flex lh-condensed">
+                {% block search_film %} {% endblock %}
+                {% block common_search %} {% endblock %}
+
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

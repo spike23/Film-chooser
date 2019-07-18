@@ -10,7 +10,10 @@
         <div class="float-right">
             <p class="text-light text-left">Search film in your film list</p>
             <form class="" action="{% url 'search_film_base_results' %}" method="get">
-                <input name="q" type="text" placeholder="Search film">
+                <input type="text" name="q" data-toggle="popover" data-placement="bottom"
+                       data-content="Press enter to search" class="form-control cfe-nav mt-0 py-3"
+                       placeholder="Search film..."
+                       value="" style="" data-original-title="" title="" autofocus="autofocus">
                 <button class="btn btn-sm add-btn" type="submit">Search</button>
             </form>
         </div>

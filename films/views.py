@@ -8,6 +8,7 @@ from django.views.generic import ListView
 
 from chooser.forms import NewFilmForm
 from chooser.models import FilmsBase, FilmsToWatching
+from premieres.models import PremierList
 
 film_list_template = 'films/film_list.html'
 watching_list_template = 'films/watching_list.html'
@@ -135,3 +136,33 @@ class SearchFilmsWatchingView(ListView):
         )
 
         return object_list
+
+
+class SearchMainView(ListView):
+    template_name = 'chooser/common_search_filter.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['query'] = self.request.GET.get('q')
+        return context
+
+    def get_queryset(self):
+        request = self.request
+        query = request.GET.get('q', None)
+
+        if query is not None:
+            film_base = FilmsBase.objects.filter(
+            Q(films__icontains=query)
+        )
+            watching_film = FilmsToWatching.objects.filter(
+            Q(films__icontains=query)
+        )
+            premieres = PremierList.objects.filter(
+            Q(films__icontains=query)
+        )
+            queryset_chain = chain(
+                film_base,
+                watching_film,
+                premieres
+            )
+            return queryset_chain
