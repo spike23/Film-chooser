@@ -7,8 +7,9 @@
             <li class="list-group-item d-flex lh-condensed">
                 {% block search_film %} {% endblock %}
                 {% block common_search %} {% endblock %}
-
             </li>
+        {% empty %}
+            <li class="list-group-item d-flex lh-condensed">Not found</li>
         {% endfor %}
     </ul>
 {% endblock %}
