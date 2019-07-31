@@ -100,12 +100,13 @@
 
         <footer class="my-5 pt-5 text-light text-center text-small">
 
-            <div class="social-btn d-flex flex-row justify-content-between">
+            <div class="social-btn d-flex flex-row justify-content-between clearfix">
                 {% if user.is_authenticated %}
+                    <div class="btn-sm">
                     <p><a class="text-light btn" href="{% url 'logout' %}">{{ user.username }} Log out</a></p>
                     </div>
-                    <div class="btn-sm">
-                    <p><a class="text-light btn" href="{% url 'change_password' %}">Change password</a></p>
+                    <div class="btn-sm d-flex justify-content-start ">
+                        <p><a class="text-light text-left " href="{% url 'change_password' %}">Change password</a></p></div>
                 {% else %}
                     <div class="btn-sm">
                         <p><a class="text-light btn" href="{% url 'signup' %}">Sign Up</a></p>
@@ -117,14 +118,11 @@
                         <p><a class="text-light btn social-gm" href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
                     </div>
                     <div class="btn-sm">
-                    <p><a class="text-light btn" href="{% provider_login_url 'facebook' %}">Log In with Facebook</a></p>
+                    <p><a class="text-light btn" href="{% provider_login_url 'facebook' %}">Log In with Facebook</a></p></div>
                 {% endif %}
-                </div>
 
-                </div>
-
-        <p class="mb-1 text-center">&copy; 2019 Nickolay Osiniy</p>
-
+            </div>
+           <p class="mb-1 text-center text-light">&copy; 2019 Nickolay Osiniy</p>
         </footer>
     </div>
 </div>

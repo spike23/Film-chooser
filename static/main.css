@@ -323,7 +323,7 @@ h2.funny-title{
 }
 
 .social-btn {
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 }
 
 .ps-reset{
@@ -345,3 +345,23 @@ h2.funny-title{
 .last-premier-btn {
   margin: 0 auto;
 }
+/*  Sidebar*/
+
+ .sidebar{
+   padding-top: 20px;
+ }
+ .left-part{
+     padding: 0;
+ }
+ .name-part {
+   font-size: 18px;
+   margin-bottom: 20px;
+   text-transform: uppercase;
+   color:#c2c2c2;
+   text-align: center;
+   border-bottom: 2px solid #222;
+ }
+
+ .search button {
+     margin-top: 20px;
+ }
