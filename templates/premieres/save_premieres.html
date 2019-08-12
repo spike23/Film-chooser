@@ -3,7 +3,7 @@
 {% block save_premieres %}
     <div class="float-right">
         <p class="text-light text-left">Search film in your premieres list</p>
-        <form class="" action="{% url 'search_premieres_results' %}" method="get">
+        <form class="search" action="{% url 'search_premieres_results' %}" method="get">
             <input type="text" name="q" data-toggle="popover" data-placement="bottom"
                    data-content="Press enter to search" class="form-control cfe-nav mt-0 py-3"
                    placeholder="Search film..."
