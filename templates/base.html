@@ -33,15 +33,17 @@
      style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <div class="shadow-box"></div>
     <div class="main-menu clearfix">
+        <div class="logo float-left"><img src="https://i.pinimg.com/736x/9e/50/1a/9e501a599544c313f07ea9494da074cb--monogram-logo-monogram-design.jpg"></div>
         <div class="container">
+
             <div class="btn-sm float-left">
                 <a href='{% url "index" %}' class="text-light text-center btn btn-white">Home </a>
             </div>
 
             <div class="btn-sm float-right">
-                <a href='{% url "premieres_scrapper" %}' class="text-light text-center btn btn-white">Premieres </a>
-                <a href='{% url "watching_film_list" %}' class="text-light text-center btn btn-white">WatchingFilms </a>
-                <a href='{% url "base_film_list" %}' class="text-light text-center btn btn-white"> FilmBase</a>
+                <a href='{% url "premieres_scrapper" %}' class="text-light text-center btn btn-white">Premieres</a>
+                <a href='{% url "watching_film_list" %}' class="text-light text-center btn btn-white">Watching Films</a>
+                <a href='{% url "base_film_list" %}' class="text-light text-center btn btn-white"> Film Base</a>
                 <a href='{% url "about_site" %}' class="text-light text-center btn btn-white">About site </a>
             </div>
 
@@ -100,31 +102,29 @@
 
         <footer class="my-5 pt-5 text-light text-center text-small">
 
-            <div class="social-btn d-flex flex-row justify-content-between">
+            <div class="social-btn d-flex flex-row justify-content-start clearfix">
                 {% if user.is_authenticated %}
-                    <p><a class="text-light btn" href="{% url 'logout' %}">{{ user.username }} Log out</a></p>
-                    </div>
                     <div class="btn-sm">
-                    <p><a class="text-light btn" href="{% url 'change_password' %}">Change password</a></p>
+                    <p><a class="btn-footer" href="{% url 'logout' %}">{{ user.username }} Log out</a></p>
+                    </div>
+                    <div class="btn-sm d-flex justify-content-start ">
+                        <p><a class=" text-left text-light " href="{% url 'change_password' %}">Change password</a></p></div>
                 {% else %}
                     <div class="btn-sm">
-                        <p><a class="text-light btn" href="{% url 'signup' %}">Sign Up</a></p>
+                        <p><a class="btn-footer" href="{% url 'signup' %}">Sign Up</a></p>
                     </div>
                     <div class="btn-sm ">
-                        <p><a class="text-light btn" href="{% url 'login' %}">Log In </a></p>
+                        <p><a class="btn-footer" href="{% url 'login' %}">Log In </a></p>
                     </div>
                     <div class="btn-sm">
-                        <p><a class="text-light btn social-gm" href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
+                        <p><a class="social-gm btn-footer" href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
                     </div>
                     <div class="btn-sm">
-                    <p><a class="text-light btn" href="{% provider_login_url 'facebook' %}">Log In with Facebook</a></p>
+                    <p><a class="btn-footer" href="{% provider_login_url 'facebook' %}">Log In with Facebook</a></p></div>
                 {% endif %}
-                </div>
 
-                </div>
-
-        <p class="mb-1 text-center">&copy; 2019 Nickolay Osiniy</p>
-
+            </div>
+           <p class="mb-1 text-center text-light">&copy; 2019 Nickolay Osiniy</p>
         </footer>
     </div>
 </div>

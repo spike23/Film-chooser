@@ -3,13 +3,10 @@
 {% block film_list %}
 
     <div class="col-md-12 order-md-2 ">
-        <h4 class="d-flex justify-content-center align-items-center">
-            <span class="text-light">Films</span>
-        </h4>
 
         <div class="float-right">
             <p class="text-light text-left">Search film in your film list</p>
-            <form class="" action="{% url 'search_film_base_results' %}" method="get">
+            <form class="search" action="{% url 'search_film_base_results' %}" method="get">
                 <input type="text" name="q" data-toggle="popover" data-placement="bottom"
                        data-content="Press enter to search" class="form-control cfe-nav mt-0 py-3"
                        placeholder="Search film..."
