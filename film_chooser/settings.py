@@ -13,13 +13,15 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from secret_temp import secret_key_test
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default=os.environ['SECRET_KEY'])
+SECRET_KEY = config('SECRET_KEY', default=secret_key_test)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
