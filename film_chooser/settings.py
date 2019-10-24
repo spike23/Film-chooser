@@ -131,8 +131,8 @@ STATIC_URL = '/static/'
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, "static"),
 # ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
@@ -151,7 +151,6 @@ ACCOUNT_USERNAME_REQUIRED = False
 
 
 MEDIA_URL = '/media/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 EMAIL_HOST = config('EMAIL_HOST')
