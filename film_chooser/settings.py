@@ -156,3 +156,7 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER', default=secret_key_test()[5])
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default=secret_key_test()[6])
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=secret_key_test()[7])
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default=secret_key_test()[8])
+
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
