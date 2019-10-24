@@ -7,7 +7,7 @@
             <span class="text-light">Films to watching</span>
         </h4>
 
-        <div class="float-right">
+        <div class="float-right search-block">
             <p class="text-light text-left">Search film in your watching list</p>
             <form class="search" action="{% url 'search_film_watching_results' %}" method="get">
                 <input type="text" name="q" data-toggle="popover" data-placement="bottom"
@@ -41,7 +41,7 @@
 
             </ul>
 
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Delete checked</button>
+            <button class="btn btn-primary btn-sm btn-block" type="submit">Delete checked</button>
 
             {% if films.has_other_pages %}
                 <ul class="pagination">
