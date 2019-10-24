@@ -21,12 +21,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default=secret_key_test)
+SECRET_KEY = config('SECRET_KEY', default=secret_key_test()[0])
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
+DEBUG = config('DEBUG', default=secret_key_test()[2])
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=secret_key_test()[1])
 
 # Application definition
 
@@ -148,9 +148,9 @@ SITE_ID = 2
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT')
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS')
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+EMAIL_HOST = config('EMAIL_HOST', default=secret_key_test()[3])
+EMAIL_PORT = config('EMAIL_PORT', default=secret_key_test()[4])
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default=secret_key_test()[5])
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default=secret_key_test()[6])
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=secret_key_test()[7])
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default=secret_key_test()[8])
