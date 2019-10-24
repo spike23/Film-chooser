@@ -4,7 +4,7 @@
 
     <div class="col-md-12 order-md-2 ">
 
-        <div class="float-right">
+        <div class="float-right search-block">
             <p class="text-light text-left">Search film in your film list</p>
             <form class="search" action="{% url 'search_film_base_results' %}" method="get">
                 <input type="text" name="q" data-toggle="popover" data-placement="bottom"
@@ -39,7 +39,7 @@
 
             </ul>
 
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Delete checked</button>
+            <button class="btn btn-primary btn-sm btn-block" type="submit">Delete checked</button>
         </form>
 
         {% if films.has_other_pages %}

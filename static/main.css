@@ -20,10 +20,17 @@
 }
 
 /*Style main Menu*/
+.menu__btn {
+    display: none;
+}
 
+/* скрываем чекбокс */
+#menu__toggle {
+  opacity: 0;
+}
 .main-menu {
   position: fixed;
-    padding: 10px 0;
+    padding: 10px 20px;
     width: 100%;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
   z-index: 10;
@@ -32,6 +39,10 @@
   background-color: rgba(0,0,0,0.8)!important;
   transition: background-color 100ms linear;
   box-shadow: 0 2px 5px 0 rgba(255,255,255,.16), 0 2px 10px 0 rgba(255,255,255,.12);
+}
+
+.main-menu a{
+    margin-right: 5px;
 }
 .z-box{
   position: relative;
@@ -56,7 +67,6 @@ input[type="number"]::placeholder,
 .logo {
     width:80px;
     height: 80px;
-    margin-left: 40px;
 }
 .logo img {
     width: 100%;
@@ -278,10 +288,15 @@ h2.funny-title{
 .form-check-input {
   height: 25px;
   width:25px;
-  top:-2px;
+  top:-5px;
   left:10px;
 
 }
+
+.form-check{
+    width: 100%;
+}
+
 
 /*Watching form*/
 
@@ -396,7 +411,9 @@ h2.funny-title{
    background: rgba(255,255,255,1);
    color: #ff751a;
  }
-
+.copyright {
+    padding:20px 0;
+}
  /*Change password*/
 
  .change-password input {
@@ -409,23 +426,170 @@ h2.funny-title{
  span.helptext{
    color:#fff;
  }
+ /*Menu for smartphone*/
+  @media only screen and (min-width : 320px) and (max-width : 1105px) {
 
+/* стилизуем кнопку */
+.menu__btn {
+  display: flex; /* используем flex для центрирования содержимого */
+  align-items: center;  /* центрируем содержимое кнопки */
+  position: fixed;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  z-index: 1;
+}
+/* добавляем "гамбургер" */
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+}
+.menu__btn > span::before {
+  content: '';
+  top: -8px;
+}
+.menu__btn > span::after {
+  content: '';
+  top: 8px;
+}
+
+/* контейнер меню */
+
+     .menu__box {
+         display: block;
+         position: fixed;
+         visibility: hidden;
+         top: 0;
+         left: -100%;
+         width: 100%;
+         height: 100%;
+         margin: 0;
+         padding: 80px 0;
+         list-style: none;
+         text-align: center;
+         background-color: rgba(0,0,0,0.8);
+         box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+     }
+
+     /* элементы меню */
+     .menu__item {
+         display: block;
+         padding: 12px 24px;
+         color: #333;
+         font-family: 'Roboto', sans-serif;
+         font-size: 20px;
+         font-weight: 600;
+         text-decoration: none;
+     }
+
+
+     #menu__toggle:checked ~ .menu__btn > span {
+         transform: rotate(45deg);
+     }
+
+     #menu__toggle:checked ~ .menu__btn > span::before {
+         top: 0;
+         transform: rotate(0);
+     }
+
+     #menu__toggle:checked ~ .menu__btn > span::after {
+         top: 0;
+         transform: rotate(90deg);
+     }
+
+     #menu__toggle:checked ~ .menu__box {
+         visibility: visible;
+         left: 0;
+     }
+ }
  /*MEDIA*/
  /* Smartphones (вертикальная и горизонтальная ориентация) ----------- */
 @media only screen and (min-width : 320px) and (max-width : 480px) {
 /* стили */
+    ul {
+        padding: 0;
+    }
+    .logo {
+        float:right!important;
+    }
+    .menu-link .float-right {
+        float: none!important;
+    }
+    .main-menu {
+        max-height: 480px;
+    }
+    .menu-link {
+        display: inline-block;
+    }
+    .menu-link a {
+        width: 100%;
+    }
+    .menu-link .float-left {
+        float: none!important;
+    }
+
+    h2.funny-title {
+        font-size: 2em;
+    }
+    .last-upload {
+        width: 100%;
+    }
+
+    .btn-footer  {
+        display: inline-block;
+    }
+
+    .list-group {
+        width: 100%;
+    }
+
+    .premier-box label {
+        font-size: 1em;
+    }
+
+    .search-block {
+        float: none!important;
+        margin-bottom: 20px;
+    }
+
+    .add-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    #new_film {
+        width: 100%;
+    }
+    .fab {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
 }
+
 
 /* iPads (вертикальная и горизонтальная) ----------- */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
 /* стили */
-}
-/* iPad 3**********/
-@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
-/* стили */
-}
-@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
-/* стили */
+
+    .logo {
+        float: right!important;
+    }
+    .menu-link .float-right, .menu-link .float-left {
+        float:none!important;
+    }
+    .search-block {
+        float: none!important;
+        margin-bottom: 20px;
+    }
+    .fab {
+        font-size: 14px;
+    }
 }
 
 /* Большие экраны ----------- */
@@ -433,42 +597,3 @@ h2.funny-title{
 /* стили */
 }
 
-/* iPhone 4 ----------- */
-@media only screen and (min-width: 320px) and (max-width: 480px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
-/* стили */
-}
-@media only screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
-/* стили */
-}
-
-/* iPhone 5 ----------- */
-@media only screen and (min-width: 320px) and (max-height: 568px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2){
-/* стили */
-}
-@media only screen and (min-width: 320px) and (max-height: 568px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2){
-/* стили */
-}
-
-/* iPhone 6 ----------- */
-@media only screen and (min-width: 375px) and (max-height: 667px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2){
-/* стили */
-}
-@media only screen and (min-width: 375px) and (max-height: 667px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2){
-/* стили */
-}
-
-/* iPhone 6+ ----------- */
-@media only screen and (min-width: 414px) and (max-height: 736px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2){
-/* стили */
-}
-@media only screen and (min-width: 414px) and (max-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2){
-/* стили */
-}
-
-/* Samsung Galaxy S3 ----------- */
-@media only screen and (min-width: 320px) and (max-height: 640px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2){
-/* стили */
-}
-@media only screen and (min-width: 320px) and (max-height: 640px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2){
-/* стили */
-}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block save_premieres %}
-    <div class="float-right">
+    <div class="float-right search-block">
         <p class="text-light text-left">Search film in your premieres list</p>
         <form class="search" action="{% url 'search_premieres_results' %}" method="get">
             <input type="text" name="q" data-toggle="popover" data-placement="bottom"
@@ -33,7 +33,7 @@
 
         </ul>
 
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Saved checked</button>
+        <button class="btn btn-primary btn-sm btn-block" type="submit">Saved checked</button>
     </form>
 
     {% if premieres.has_other_pages %}
