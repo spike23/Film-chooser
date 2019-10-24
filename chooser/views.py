@@ -22,7 +22,11 @@ def index(request):
     page = request.GET.get('page')
     film_list_latest = paginator.get_page(page)
 
-    updated = FilmsBase.objects.latest('last_updated')
+    # updated = FilmsBase.objects.latest('last_updated')
+    if FilmsBase.objects.filter(user_id=current_user):
+        updated = FilmsBase.objects.filter(user_id=current_user).latest('last_updated')
+    else:
+        updated = None
 
     context = {
         'form': form,
