@@ -1,5 +1,5 @@
 from urllib.request import urlopen
-
+from urllib.request import HTTPError
 from bs4 import BeautifulSoup
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -35,14 +35,18 @@ def premieres_collector(request):
         quote_page = 'http://www.kinofilms.ua/afisha/ukr_premieres/?month={month}&year={year}'.format(month=month,
                                                                                                       year=year)
         page = urlopen(quote_page)
-        soup = BeautifulSoup(page, 'html.parser')
-        name_box = soup.findAll('a', attrs={'class': 'o'})
 
-        for film in name_box:
-            title = film.text.strip()
-            link = 'http://www.kinofilms.ua' + film.get('href')
-            PremierList(films=title, links=link, user_id=current_user).save()
-        return redirect('premieres_shower')
+        try:
+            soup = BeautifulSoup(page, 'html.parser')
+            name_box = soup.findAll('a', attrs={'class': 'o'})
+
+            for film in name_box:
+                title = film.text.strip()
+                link = 'http://www.kinofilms.ua' + film.get('href')
+                PremierList(films=title, links=link, user_id=current_user).save()
+            return redirect('premieres_shower')
+        except HTTPError as e:
+            print(e.fp.read())
 
 
 class PremieresShowerView(ListView):
