@@ -113,3 +113,6 @@ venv.bak/
 # mail folder
 sent_emails/*
 !sent_emails/.gitkeep
+
+# staticfiles
+/static/staticfiles
