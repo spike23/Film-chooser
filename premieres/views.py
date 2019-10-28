@@ -5,14 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView, TemplateView, UpdateView
 
 from chooser.models import FilmsBase
 from .forms import PremieresPeriodForm
 from .models import PremierList
-
-premieres_template = 'premieres/premieres_list.html'
-save_premieres_template = 'premieres/save_premieres.html'
 
 
 class PremieresScrapperView(TemplateView):
@@ -61,19 +58,20 @@ class PremieresShowerView(ListView):
         return film_list
 
 
-@login_required
-def save_films_base(request):
-    current_user = request.user.id
-    values = request.POST.getlist('save')
-    films = PremierList.objects.filter(pk__in=values, user_id=current_user).values('films')
-    for film in films:
-        FilmsBase.objects.update_or_create(films=film.get('films'), user_id=current_user)
+class SaveFilmsBase(UpdateView):
+    model = PremierList
 
-    saved_films = [film.get('films') for film in films]
+    def dispatch(self, request, *args, **kwargs):
+        current_user = request.user.id
+        values = request.POST.getlist('save')
+        films = PremierList.objects.filter(pk__in=values, user_id=current_user).values('films')
+        for film in films:
+            FilmsBase.objects.update_or_create(films=film.get('films'), user_id=current_user)
 
-    request.session['saved_films'] = saved_films
+        saved_films = [film.get('films') for film in films]
 
-    return redirect('base_film_list')
+        request.session['saved_films'] = saved_films
+        return redirect('base_film_list')
 
 
 class SearchPremieresView(ListView):
