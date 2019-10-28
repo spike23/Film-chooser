@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, TemplateView, UpdateView
 
@@ -45,7 +46,7 @@ def premieres_collector(request):
                 PremierList(films=title, links=link, user_id=current_user).save()
             return redirect('premieres_shower')
         except HTTPError as e:
-            print(e.fp.read())
+            return HttpResponse(e.fp.read())
 
 
 class PremieresShowerView(ListView):
