@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 
 from chooser.models import FilmsBase
 from .forms import PremieresPeriodForm
@@ -15,13 +15,16 @@ premieres_template = 'premieres/premieres_list.html'
 save_premieres_template = 'premieres/save_premieres.html'
 
 
-def premieres_scrapper(request):
+class PremieresScrapperView(TemplateView):
+    template_name = 'premieres/premieres_list.html'
     form = PremieresPeriodForm()
+
     context = {
         'form': form
     }
 
-    return render(request, premieres_template, context)
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.context)
 
 
 @login_required

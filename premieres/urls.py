@@ -1,11 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.urls import path
 
-from premieres.views import SearchPremieresView, PremieresShowerView
+from premieres.views import SearchPremieresView, PremieresShowerView, PremieresScrapperView
 from . import views
 
 urlpatterns = [
-    path('premieres-list/', views.premieres_scrapper, name='premieres_scrapper'),
+    path('premieres-list/', PremieresScrapperView.as_view(), name='premieres_scrapper'),
     path('get-premier-list', views.premieres_collector, name='premieres_collector'),
     path('save-premieres', views.save_films_base, name='save_films_base'),
     path('show-premier-list', login_required(PremieresShowerView.as_view()), name='premieres_shower'),
