@@ -45,19 +45,17 @@ def premieres_collector(request):
         return redirect('premieres_shower')
 
 
-@login_required
-def premieres_shower(request):
-    current_user = request.user.id
-    films = PremierList.objects.filter(user_id=current_user).order_by('films')
-    paginator = Paginator(films, 10)
-    page = request.GET.get('page')
-    film_list = paginator.get_page(page)
+class PremieresShowerView(ListView):
+    model = PremierList
+    template_name = 'premieres/save_premieres.html'
+    context_object_name = 'premieres'
 
-    context = {
-        'premieres': film_list,
-    }
-
-    return render(request, save_premieres_template, context)
+    def get_queryset(self):
+        films = PremierList.objects.filter(user_id=self.request.user).order_by('films')
+        paginator = Paginator(films, 10)
+        page = self.request.GET.get('page')
+        film_list = paginator.get_page(page)
+        return film_list
 
 
 @login_required
