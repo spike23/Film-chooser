@@ -34,9 +34,8 @@ def premieres_collector(request):
         year = form.cleaned_data.get('year')
         quote_page = 'http://www.kinofilms.ua/afisha/ukr_premieres/?month={month}&year={year}'.format(month=month,
                                                                                                       year=year)
-        page = urlopen(quote_page)
-
         try:
+            page = urlopen(quote_page)
             soup = BeautifulSoup(page, 'html.parser')
             name_box = soup.findAll('a', attrs={'class': 'o'})
 
