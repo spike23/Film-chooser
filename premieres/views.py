@@ -1,7 +1,7 @@
-from urllib.request import urlopen
 from urllib.request import HTTPError
+from urllib.request import urlopen
+
 from bs4 import BeautifulSoup
-from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.http import HttpResponse
@@ -25,28 +25,30 @@ class PremieresScrapperView(TemplateView):
         return render(request, self.template_name, self.context)
 
 
-@login_required
-def premieres_collector(request):
-    current_user = request.user.id
-    form = PremieresPeriodForm(request.POST)
-    if request.method == 'POST' and form.is_valid():
-        PremierList.objects.all().filter(user_id=current_user).delete()
-        month = form.cleaned_data.get('month')
-        year = form.cleaned_data.get('year')
-        quote_page = 'http://www.kinofilms.ua/afisha/ukr_premieres/?month={month}&year={year}'.format(month=month,
-                                                                                                      year=year)
-        try:
-            page = urlopen(quote_page)
-            soup = BeautifulSoup(page, 'html.parser')
-            name_box = soup.findAll('a', attrs={'class': 'o'})
+class PremieresCollector(UpdateView):
+    model = PremierList
 
-            for film in name_box:
-                title = film.text.strip()
-                link = 'http://www.kinofilms.ua' + film.get('href')
-                PremierList(films=title, links=link, user_id=current_user).save()
-            return redirect('premieres_shower')
-        except HTTPError as e:
-            return HttpResponse(e.fp.read())
+    def dispatch(self, request, *args, **kwargs):
+        current_user = request.user.id
+        form = PremieresPeriodForm(request.POST)
+        if request.method == 'POST' and form.is_valid():
+            PremierList.objects.all().filter(user_id=current_user).delete()
+            month = form.cleaned_data.get('month')
+            year = form.cleaned_data.get('year')
+            quote_page = 'http://www.kinofilms.ua/afisha/ukr_premieres/?month={month}&year={year}'.format(month=month,
+                                                                                                          year=year)
+            try:
+                page = urlopen(quote_page)
+                soup = BeautifulSoup(page, 'html.parser')
+                name_box = soup.findAll('a', attrs={'class': 'o'})
+
+                for film in name_box:
+                    title = film.text.strip()
+                    link = 'http://www.kinofilms.ua' + film.get('href')
+                    PremierList(films=title, links=link, user_id=current_user).save()
+                return redirect('premieres_shower')
+            except HTTPError as e:
+                return HttpResponse(e.fp.read())
 
 
 class PremieresShowerView(ListView):
