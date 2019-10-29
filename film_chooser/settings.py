@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'film_chooser.wsgi.application'
 
 DATABASES = {
     # 'default': dj_database_url.config(default=config('SQLITE')),
-    'default': dj_database_url.config(default=config('POSTGRES'))
+    'default': dj_database_url.config(default=config('DATABASE_URL'))
 
 }
 
