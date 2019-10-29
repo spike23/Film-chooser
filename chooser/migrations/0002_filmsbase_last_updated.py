@@ -11,10 +11,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        # migrations.AddField(
-        #     model_name='filmsbase',
-        #     name='last_updated',
-        #     field=models.DateTimeField(auto_now_add=True, default=datetime.datetime(2019, 6, 20, 12, 24, 53, 833634)),
-        #     preserve_default=False,
-        # ),
+        migrations.AddField(
+            model_name='filmsbase',
+            name='last_updated',
+            field=models.DateTimeField(auto_now_add=True, default=datetime.datetime(2019, 6, 20, 12, 24, 53, 833634)),
+            preserve_default=False,
+        ),
     ]
