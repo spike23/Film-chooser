@@ -4,7 +4,7 @@ from users.models import CustomUser
 
 
 class PremierList(models.Model):
-    films = models.CharField(max_length=100, unique=True)
+    films = models.CharField(max_length=100, unique=False)
     links = models.URLField(max_length=100)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 

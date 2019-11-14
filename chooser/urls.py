@@ -1,9 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.urls import path
 
-from . import views
+from chooser.views import AboutSiteView, BaseFilmsUploader, ChooserView
 
 urlpatterns = [
-    path('chooser', views.chooser, name='chooser'),
-    path('upload-csv/', views.base_films_uploader, name='base_films_uploader'),
-    path('about-site/', views.about_site, name='about_site')
+    path('chooser', login_required(ChooserView.as_view()), name='chooser'),
+    path('upload-csv/', login_required(BaseFilmsUploader.as_view()), name='base_films_uploader'),
+    path('about-site/', AboutSiteView.as_view(), name='about_site')
 ]
