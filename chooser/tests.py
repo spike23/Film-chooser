@@ -6,14 +6,10 @@ import pytest
 from django.urls import reverse
 
 from chooser.models import FilmsBase, FilmsToWatching
+from chooser.views import ChooserView
 
 
 class TestChooser:
-
-    @staticmethod
-    def random_films(films, quantity):
-        choice = random.sample(list(films), quantity)
-        return choice
 
     @staticmethod
     def user_base_prepare(django_user_model, tmpdir):
@@ -53,7 +49,7 @@ class TestChooser:
 
         FilmsToWatching.objects.all().filter(user_id=user.id).delete()
         films_number = 2
-        result = self.random_films(
+        result = ChooserView.random_films(
             films=FilmsBase.objects.filter(user_id=user.id).values_list('films', flat=True),
             quantity=films_number)
         for film in result:
