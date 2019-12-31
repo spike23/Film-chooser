@@ -3,7 +3,7 @@ from users.models import CustomUser
 
 
 class FilmsBase(models.Model):
-    films = models.CharField(max_length=100, unique=True)
+    films = models.CharField(max_length=100, unique=False)
     last_updated = models.DateField(auto_now=True)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
