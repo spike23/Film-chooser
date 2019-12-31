@@ -16,7 +16,7 @@
         </div>
 
 
-        <form class="needs-validation btn-sm col-md-4 " action="{% url 'delete_films_base' %}"
+        <form class="needs-validation btn-sm col-md-4 filmslist" action="{% url 'delete_films_base' %}"
               method="post">                        {% csrf_token %}
             <ul class="list-group">
                 {% if films %}
